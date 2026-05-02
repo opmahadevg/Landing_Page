@@ -5,7 +5,7 @@ outputs = []
 id = "aauFDk6O82zQdXCS9g4XX"
 uri = "file://artifacts/proquoment/public/hero-bg.png"
 type = "image"
-title = "Hero background factory floor"
+title = "Aerial textile factory floor"
 
 [[generated]]
 id = "pVZYgYrqTUQLv9PrlWYMP"
@@ -30,3 +30,9 @@ id = "el9iHHgMTFk2Bmw0UKXR4"
 uri = "file://artifacts/proquoment/public/step4.png"
 type = "image"
 title = "QA and logistics step visual"
+
+[[generated]]
+id = "m-yshZVcpbS5lVgv6e8En"
+uri = "file://artifacts/proquoment/public/qa-bg.png"
+type = "image"
+title = "Quality control inspector"

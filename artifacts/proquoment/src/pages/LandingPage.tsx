@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'wouter';
+import { Link, useLocation } from 'wouter';
 import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle2, Factory, Globe, MessageSquare, PackageSearch, ShieldCheck, Truck, ArrowUpRight, Zap, Settings2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -29,10 +29,12 @@ export default function LandingPage() {
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
             <a href="#how-it-works" className="hover:text-primary transition-colors">How it works</a>
             <a href="#pricing" className="hover:text-primary transition-colors">Pricing</a>
-            <a href="#suppliers" className="hover:text-primary transition-colors">For Suppliers</a>
+            <Link href="/suppliers" className="hover:text-primary transition-colors">For Suppliers</Link>
           </div>
           <div className="flex items-center gap-4">
-            <Button variant="ghost" className="hidden sm:inline-flex font-semibold">Sign in</Button>
+            <Link href="/signin">
+              <Button variant="ghost" className="hidden sm:inline-flex font-semibold">Sign in</Button>
+            </Link>
             <Button className="bg-primary hover:bg-primary/90 text-white font-semibold rounded-lg px-6" onClick={() => window.open('https://www.proquoment.in/waitlist', '_blank')}>
               Join Waitlist
             </Button>

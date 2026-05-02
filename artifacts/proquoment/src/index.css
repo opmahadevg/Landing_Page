@@ -22,18 +22,23 @@
 
   --color-primary: hsl(var(--primary));
   --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-primary-border: var(--primary-border);
 
   --color-secondary: hsl(var(--secondary));
   --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-secondary-border: var(--secondary-border);
 
   --color-muted: hsl(var(--muted));
   --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-muted-border: var(--muted-border);
 
   --color-accent: hsl(var(--accent));
   --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-accent-border: var(--accent-border);
 
   --color-destructive: hsl(var(--destructive));
   --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-destructive-border: var(--destructive-border);
 
   --font-sans: var(--app-font-sans);
   --font-serif: var(--app-font-serif);
@@ -45,29 +50,38 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+/* LIGHT MODE */
 :root {
+  --button-outline: rgba(0,0,0, .10);
+  --badge-outline: rgba(0,0,0, .05);
+
+  --opaque-button-border-intensity: -8;
+
+  --elevate-1: rgba(0,0,0, .03);
+  --elevate-2: rgba(0,0,0, .08);
+
   --background: 0 0% 100%;
-  --foreground: 0 0% 7%;
+  --foreground: 0 0% 10%;
   --border: 0 0% 90%;
   --card: 0 0% 100%;
-  --card-foreground: 0 0% 7%;
+  --card-foreground: 0 0% 10%;
   --card-border: 0 0% 90%;
 
   --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 7%;
+  --popover-foreground: 0 0% 10%;
   --popover-border: 0 0% 90%;
 
-  --primary: 236 100% 47%; /* #0000EE */
+  --primary: 236 100% 47%; /* #000EEF */
   --primary-foreground: 0 0% 100%;
 
-  --secondary: 0 0% 96%; /* #F7F7F7 */
-  --secondary-foreground: 0 0% 7%;
+  --secondary: 0 0% 96%;
+  --secondary-foreground: 0 0% 10%;
 
   --muted: 0 0% 96%;
   --muted-foreground: 0 0% 45%;
 
   --accent: 0 0% 96%;
-  --accent-foreground: 0 0% 7%;
+  --accent-foreground: 0 0% 10%;
 
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
@@ -78,7 +92,7 @@
   --app-font-sans: 'Figtree', sans-serif;
   --app-font-serif: Georgia, serif;
   --app-font-mono: Menlo, monospace;
-  --radius: 0.75rem; /* 12px for rounded friendly feel */
+  --radius: 0.5rem; /* 8px */
 }
 
 @layer base {
@@ -97,21 +111,4 @@
 
 .animate-marquee {
   animation: marquee 30s linear infinite;
-}
-
-@keyframes float {
-  0% { transform: translateY(0px) translateX(0px); opacity: 0; }
-  10% { opacity: 0.8; }
-  90% { opacity: 0.8; }
-  100% { transform: translateY(-100px) translateX(20px); opacity: 0; }
-}
-
-.particle {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background-color: white;
-  border-radius: 50%;
-  animation: float 8s infinite linear;
-  opacity: 0;
 }

@@ -1,329 +1,351 @@
-import React, { useRef, useState } from "react";
-import { Link } from "wouter";
-import { motion, useInView } from "framer-motion";
-import { DollarSign, Clock, Star, ArrowRight, X } from "lucide-react";
-import NavBar from "@/components/NavBar";
-import FooterBar from "@/components/FooterBar";
+import React from 'react';
+import { Link } from 'wouter';
+import { motion } from 'framer-motion';
+import { ArrowRight, CheckCircle2, Factory, Globe, MessageSquare, PackageSearch, ShieldCheck, Truck, ArrowUpRight, Zap, Settings2 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 
-const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode, delay?: number, className?: string }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+const fadeIn = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
+};
 
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 20 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
+const staggerContainer = {
+  animate: { transition: { staggerChildren: 0.1 } }
 };
 
 export default function LandingPage() {
-  const [showBanner, setShowBanner] = useState(true);
-
   return (
-    <div className="min-h-screen bg-white text-[#111111] font-sans selection:bg-[#0000EE] selection:text-white">
-      {/* Announcement Bar */}
-      {showBanner && (
-        <div className="bg-[#F7F7F7] border-b border-[#E5E5E5] px-4 py-2 flex items-center justify-between text-sm">
-          <div className="flex-1 text-center font-medium text-[#0000EE]">
-            Announcing Proquoment's India Manufacturing Network — Now open for early access.
+    <div className="min-h-screen bg-white text-gray-900 font-sans selection:bg-primary selection:text-white">
+      {/* Navigation */}
+      <nav className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white/80 backdrop-blur-md">
+        <div className="container mx-auto px-6 h-20 flex items-center justify-between">
+          <Link href="/" className="text-2xl font-bold tracking-tight">
+            Proquoment<span className="text-primary">.</span>
+          </Link>
+          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+            <a href="#how-it-works" className="hover:text-primary transition-colors">How it works</a>
+            <a href="#pricing" className="hover:text-primary transition-colors">Pricing</a>
+            <a href="#suppliers" className="hover:text-primary transition-colors">For Suppliers</a>
           </div>
-          <button onClick={() => setShowBanner(false)} className="text-gray-500 hover:text-gray-800">
-            <X size={16} />
-          </button>
+          <div className="flex items-center gap-4">
+            <Button variant="ghost" className="hidden sm:inline-flex font-semibold">Sign in</Button>
+            <Button className="bg-primary hover:bg-primary/90 text-white font-semibold rounded-lg px-6" onClick={() => window.open('https://www.proquoment.in/waitlist', '_blank')}>
+              Join Waitlist
+            </Button>
+          </div>
         </div>
-      )}
-
-      <NavBar />
+      </nav>
 
       {/* Hero Section */}
-      <section className="relative pt-20 pb-32 px-6 overflow-hidden max-w-7xl mx-auto">
-        <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-8">
-          {/* Left Side */}
-          <div className="w-full lg:w-[40%] flex flex-col items-start text-left z-10">
-            <FadeIn>
-              <div className="flex items-center gap-3 text-sm font-semibold text-gray-600 mb-8 border border-gray-200 rounded-full px-4 py-1.5 shadow-sm bg-white">
-                <span className="flex items-center gap-1"><DollarSign size={14} className="text-gray-400" /> Lower cost</span>
-                <span className="text-gray-300">&middot;</span>
-                <span className="flex items-center gap-1"><Clock size={14} className="text-gray-400" /> Less hassle</span>
-                <span className="text-gray-300">&middot;</span>
-                <span className="flex items-center gap-1"><Star size={14} className="text-gray-400" /> Better quality</span>
-              </div>
-            </FadeIn>
-            
-            <FadeIn delay={0.1}>
-              <h1 className="text-5xl md:text-[56px] font-black leading-[1.1] tracking-tight mb-6 text-[#111111]">
-                Indian Manufacturing.<br />
-                <span className="text-[#0000EE]">Sourced by AI.</span>
-              </h1>
-            </FadeIn>
+      <section className="relative pt-24 pb-32 overflow-hidden">
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <motion.div initial="initial" animate="animate" variants={staggerContainer} className="max-w-2xl">
+              <motion.div variants={fadeIn} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 text-primary text-sm font-semibold tracking-wide mb-8 border border-primary/10">
+                <Globe className="w-4 h-4" />
+                Industrial Supply Chain Intelligence
+              </motion.div>
+              <motion.h1 variants={fadeIn} className="text-[58px] leading-[1.05] font-bold tracking-tight text-gray-900 mb-6">
+                Global Product Sourcing.<br />
+                <span className="text-primary">Automated.</span>
+              </motion.h1>
+              <motion.p variants={fadeIn} className="text-xl text-gray-600 mb-10 leading-relaxed max-w-lg font-medium">
+                Lower unit costs. Fewer tariffs. Premium factories. None of the work.
+              </motion.p>
+              <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4">
+                <Button size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-xl px-8 h-14 text-base font-semibold" onClick={() => window.open('https://www.proquoment.in/waitlist', '_blank')}>
+                  Join Waitlist
+                </Button>
+                <Button size="lg" variant="outline" className="rounded-xl px-8 h-14 text-base font-semibold border-gray-200 hover:bg-gray-50" onClick={() => window.open('https://www.proquoment.in/contact', '_blank')}>
+                  Book a call
+                </Button>
+              </motion.div>
+            </motion.div>
 
-            <FadeIn delay={0.2}>
-              <p className="text-[17px] md:text-[18px] text-gray-500 max-w-md mb-10 font-medium leading-relaxed">
-                Lower unit costs. Fewer tariffs. Premium Indian factories.<br />
-                None of the work.
-              </p>
-            </FadeIn>
-
-            <FadeIn delay={0.3} className="w-full mb-12">
-              <a
-                href="https://www.proquoment.in/waitlist"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-block bg-[#0000EE] hover:bg-blue-700 text-white font-semibold px-8 py-3.5 rounded-full transition-colors shadow-md text-lg"
-              >
-                Start sourcing for free
-              </a>
-            </FadeIn>
-
-            <FadeIn delay={0.4}>
-              <div className="text-[13px] text-gray-400 font-medium mb-3">Work with the suppliers behind</div>
-              <div className="flex flex-wrap gap-4 text-sm font-semibold text-gray-300">
-                <span>Textile Co.</span>
-                <span>&middot;</span>
-                <span>Surat Mills</span>
-                <span>&middot;</span>
-                <span>Jaipur Crafts</span>
-                <span>&middot;</span>
-                <span>Tirupur Exports</span>
-                <span>&middot;</span>
-                <span>Nashik Industries</span>
-              </div>
-            </FadeIn>
-          </div>
-
-          {/* Right Side */}
-          <div className="w-full lg:w-[55%] lg:ml-auto">
-            <FadeIn delay={0.2}>
-              <div className="relative bg-[#1A1A1A] rounded-3xl p-4 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)]">
-                <div className="bg-white rounded-2xl overflow-hidden h-[500px] flex flex-col">
-                  {/* Product Image Area */}
-                  <div className="h-48 bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center relative border-b border-gray-100">
-                    <div className="absolute top-4 left-4 bg-white/80 backdrop-blur px-3 py-1 rounded-full text-xs font-semibold text-gray-600">
-                      Target: Canvas Tote Bag
-                    </div>
-                    <div className="w-32 h-32 rounded-xl bg-white shadow-sm border border-gray-100 flex items-center justify-center text-gray-300">
-                      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M16 8v-2a4 4 0 0 0-8 0v2"/></svg>
-                    </div>
+            {/* Hero Right: UI Mockup */}
+            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="relative">
+              <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent rounded-[2rem] transform rotate-3 scale-105 blur-2xl"></div>
+              <div className="relative bg-white border border-gray-100 rounded-2xl shadow-2xl shadow-gray-200/50 overflow-hidden flex flex-col h-[500px]">
+                {/* Mockup Header */}
+                <div className="h-12 border-b border-gray-100 flex items-center px-4 gap-2 bg-gray-50/50">
+                  <div className="flex gap-1.5">
+                    <div className="w-3 h-3 rounded-full bg-red-400"></div>
+                    <div className="w-3 h-3 rounded-full bg-amber-400"></div>
+                    <div className="w-3 h-3 rounded-full bg-green-400"></div>
                   </div>
-                  
-                  <div className="p-6 flex-1 bg-white">
-                    <div className="text-sm font-semibold text-[#111111] mb-4">
-                      Based on your requirements, here are the best Indian suppliers:
-                    </div>
-                    <div className="grid grid-cols-2 gap-3">
-                      {/* Top Pick */}
-                      <div className="bg-white border-2 border-[#0000EE] rounded-xl p-4 shadow-sm relative">
-                        <div className="absolute -top-2.5 right-3 bg-[#0000EE] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">Top pick</div>
-                        <div className="font-bold text-[#111111] text-sm mb-1">Master Textiles</div>
-                        <div className="text-xs text-gray-500 mb-3">Heavy Canvas Specialist</div>
-                        <div className="text-sm font-bold text-[#0000EE]">$4.20<span className="text-gray-400 text-xs font-medium">/unit</span></div>
-                      </div>
-                      {/* Others */}
-                      <div className="bg-[#F7F7F7] border border-gray-100 rounded-xl p-4">
-                        <div className="font-bold text-[#111111] text-sm mb-1">Surat Fabrics</div>
-                        <div className="text-xs text-gray-500 mb-3">Industrial Textiles</div>
-                        <div className="text-sm font-bold text-gray-700">$4.05<span className="text-gray-400 text-xs font-medium">/unit</span></div>
-                      </div>
-                      <div className="bg-[#F7F7F7] border border-gray-100 rounded-xl p-4">
-                        <div className="font-bold text-[#111111] text-sm mb-1">Jaipur Weavers</div>
-                        <div className="text-xs text-gray-500 mb-3">Cotton &amp; Canvas</div>
-                        <div className="text-sm font-bold text-gray-700">$4.50<span className="text-gray-400 text-xs font-medium">/unit</span></div>
-                      </div>
-                      <div className="bg-[#F7F7F7] border border-gray-100 rounded-xl p-4">
-                        <div className="font-bold text-[#111111] text-sm mb-1">Tirupur Co.</div>
-                        <div className="text-xs text-gray-500 mb-3">Garment &amp; Bags</div>
-                        <div className="text-sm font-bold text-gray-700">$4.15<span className="text-gray-400 text-xs font-medium">/unit</span></div>
-                      </div>
-                    </div>
+                  <div className="ml-4 text-xs font-medium text-gray-500 flex items-center gap-2">
+                    <ShieldCheck className="w-3.5 h-3.5" /> Spec Analysis · Proquoment Copilot
                   </div>
                 </div>
-              </div>
-            </FadeIn>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Bar */}
-      <section className="bg-[#F7F7F7] py-12 border-y border-[#E5E5E5]">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0 md:divide-x md:divide-gray-200">
-            <div className="text-center px-4">
-              <div className="text-3xl font-black text-[#111111] mb-1">2,400+</div>
-              <div className="text-sm text-gray-500 font-medium">Verified Suppliers</div>
-            </div>
-            <div className="text-center px-4">
-              <div className="text-3xl font-black text-[#111111] mb-1">18</div>
-              <div className="text-sm text-gray-500 font-medium">Manufacturing Hubs</div>
-            </div>
-            <div className="text-center px-4">
-              <div className="text-3xl font-black text-[#111111] mb-1">60%</div>
-              <div className="text-sm text-gray-500 font-medium">Cost Reduction</div>
-            </div>
-            <div className="text-center px-4">
-              <div className="text-3xl font-black text-[#111111] mb-1">14-Day</div>
-              <div className="text-sm text-gray-500 font-medium">Avg Quote</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works */}
-      <section id="how-it-works" className="bg-white py-32 px-6">
-        <div className="max-w-6xl mx-auto">
-          <FadeIn className="text-center mb-20">
-            <h2 className="text-4xl font-black text-[#111111] mb-4">How Proquoment works</h2>
-            <p className="text-lg text-gray-500 font-medium max-w-2xl mx-auto">
-              From product description to door delivery — handled.
-            </p>
-          </FadeIn>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                num: "01",
-                title: "Specify",
-                desc: "Describe your product. Our AI converts it into factory-ready technical specs."
-              },
-              {
-                num: "02",
-                title: "Source",
-                desc: "We identify the best-matched Indian manufacturers and collect real quotes."
-              },
-              {
-                num: "03",
-                title: "Deliver",
-                desc: "Place your order. We manage production, QA, and freight door to door."
-              }
-            ].map((step, i) => (
-              <FadeIn key={i} delay={i * 0.1}>
-                <div className="bg-white rounded-[12px] p-8 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border border-gray-100 h-full">
-                  <div className="text-[#0000EE] text-lg font-bold mb-6">{step.num}.</div>
-                  <h3 className="text-xl font-bold text-[#111111] mb-4">{step.title}</h3>
-                  <p className="text-gray-500 font-medium leading-relaxed">{step.desc}</p>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Product Demo Section */}
-      <section className="bg-[#F7F7F7] py-32 px-6">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-16">
-          <div className="w-full md:w-1/2">
-            <FadeIn>
-              <div className="text-[11px] font-bold tracking-wider text-gray-400 mb-4 uppercase">AI-POWERED</div>
-              <h2 className="text-4xl font-black text-[#111111] leading-[1.1] mb-6">
-                Specify anything.<br />We source it.
-              </h2>
-              <p className="text-lg text-gray-500 font-medium leading-relaxed mb-8">
-                Upload a sketch, photo, or plain description. Proquoment's AI translates it into manufacturing specs and finds the right factory in seconds.
-              </p>
-              <Link href="/#how-it-works" className="inline-flex items-center text-[#0000EE] font-bold hover:text-blue-800 transition-colors">
-                See how it works <ArrowRight size={18} className="ml-1" />
-              </Link>
-            </FadeIn>
-          </div>
-          <div className="w-full md:w-1/2">
-            <FadeIn delay={0.2}>
-              <div className="bg-white rounded-[12px] shadow-xl p-8 border border-gray-100">
-                <div className="text-sm font-bold text-gray-400 mb-6 uppercase tracking-wider">Product Specification</div>
                 
-                <div className="space-y-4 mb-8">
-                  <div>
-                    <label className="block text-xs font-bold text-gray-400 mb-1.5 uppercase">Product type</label>
-                    <div className="bg-[#F7F7F7] border border-gray-200 rounded-lg p-3 text-sm font-semibold text-[#111111]">Industrial Canvas Bag</div>
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-gray-400 mb-1.5 uppercase">Material</label>
-                    <div className="bg-[#F7F7F7] border border-gray-200 rounded-lg p-3 text-sm font-semibold text-[#111111]">600D Oxford Fabric</div>
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-xs font-bold text-gray-400 mb-1.5 uppercase">Quantity</label>
-                      <div className="bg-[#F7F7F7] border border-gray-200 rounded-lg p-3 text-sm font-semibold text-[#111111]">5,000 units</div>
+                {/* Mockup Body */}
+                <div className="flex-1 p-6 flex flex-col gap-6 bg-gray-50/30 overflow-hidden">
+                  {/* AI Chat Bubble */}
+                  <div className="flex items-start gap-4">
+                    <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0 shadow-sm">
+                      <Zap className="w-4 h-4 text-white" />
                     </div>
-                    <div>
-                      <label className="block text-xs font-bold text-gray-400 mb-1.5 uppercase">Target</label>
-                      <div className="bg-[#F7F7F7] border border-gray-200 rounded-lg p-3 text-sm font-semibold text-[#111111]">$8.50/unit</div>
+                    <div className="bg-white border border-gray-100 rounded-2xl rounded-tl-none p-4 shadow-sm text-sm text-gray-700 leading-relaxed">
+                      Got it — men's black puffed jackets, 200 pieces. How warm do you want these? I can specify a 700-fill goose down or a synthetic equivalent depending on your target price.
                     </div>
                   </div>
-                </div>
 
-                <button className="w-full bg-[#0000EE] text-white font-bold py-3.5 rounded-[12px] mb-4 shadow-sm">
-                  Find Suppliers
-                </button>
-
-                <div className="bg-blue-50/50 border border-blue-100 text-[#0000EE] text-xs font-medium p-3 rounded-lg flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 bg-[#0000EE] rounded-full animate-pulse"></div>
-                  AI found 12 matching suppliers in Surat and Nashik...
+                  {/* Spec Panel */}
+                  <div className="bg-white border border-gray-100 rounded-xl p-5 shadow-sm mt-auto">
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="font-semibold text-gray-900 flex items-center gap-2">
+                        <Settings2 className="w-4 h-4 text-primary" /> Product Specifications
+                      </h3>
+                      <Badge variant="secondary" className="bg-green-50 text-green-700 border-green-200">Verified</Badge>
+                    </div>
+                    <div className="space-y-3">
+                      <div className="flex justify-between text-sm py-2 border-b border-gray-50">
+                        <span className="text-gray-500">Primary Material</span>
+                        <span className="font-medium text-gray-900 flex items-center gap-1">Gore-Tex Pro <CheckCircle2 className="w-3.5 h-3.5 text-primary" /></span>
+                      </div>
+                      <div className="flex justify-between text-sm py-2 border-b border-gray-50">
+                        <span className="text-gray-500">Coating</span>
+                        <span className="font-medium text-gray-900">DWR Finish</span>
+                      </div>
+                      <div className="flex justify-between text-sm py-2">
+                        <span className="text-gray-500">Seams</span>
+                        <span className="font-medium text-gray-900">Heat Tape</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </FadeIn>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Testimonial / Social Proof */}
-      <section className="bg-white py-32 px-6 border-t border-[#E5E5E5]">
-        <div className="max-w-6xl mx-auto">
-          <FadeIn className="text-center mb-16">
-            <h2 className="text-3xl font-black text-[#111111]">Trusted by sourcing teams worldwide</h2>
-          </FadeIn>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                quote: "Our unit costs dropped 38% in the first production run. Proquoment handled specs, factory, QA, and shipping.",
-                author: "Arjun S., Operations Lead"
-              },
-              {
-                quote: "We replaced 3 sourcing agencies with one platform. The AI spec translation alone saves us weeks per project.",
-                author: "Maria K., Product Director"
-              },
-              {
-                quote: "Finding verified Indian manufacturers used to take months. Proquoment delivered quotes in 14 days.",
-                author: "James T., Founder"
-              }
-            ].map((t, i) => (
-              <FadeIn key={i} delay={i * 0.1}>
-                <div className="bg-white rounded-[12px] p-8 shadow-sm border border-gray-200 h-full flex flex-col justify-between">
-                  <p className="text-gray-600 font-medium leading-relaxed mb-8">"{t.quote}"</p>
-                  <div className="text-sm font-bold text-[#111111]">{t.author}</div>
+      {/* Trust Strip */}
+      <section className="py-10 border-y border-gray-100 bg-gray-50/50">
+        <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-8 text-gray-400">
+          <span className="text-sm font-semibold tracking-wide uppercase">Work with the suppliers behind</span>
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 grayscale opacity-60">
+            <span className="font-bold text-xl font-serif">UNIQLO</span>
+            <span className="font-black text-2xl tracking-tighter">adidas</span>
+            <span className="font-bold text-2xl tracking-widest">TATA</span>
+            <span className="font-bold text-xl tracking-tight">Reliance</span>
+            <span className="font-bold text-xl">ZARA</span>
+          </div>
+        </div>
+      </section>
+
+      {/* How it works */}
+      <section id="how-it-works" className="py-32">
+        <div className="container mx-auto px-6">
+          <div className="text-center max-w-3xl mx-auto mb-24">
+            <h2 className="text-4xl font-bold tracking-tight text-gray-900 mb-6">How it works: End-to-end sourcing</h2>
+            <p className="text-xl text-gray-600">Add your product details and let Proquoment handle the complexity.</p>
+          </div>
+
+          <div className="space-y-32">
+            {/* Step 1 */}
+            <div className="grid md:grid-cols-2 gap-16 items-center">
+              <div className="order-2 md:order-1 relative rounded-2xl overflow-hidden shadow-xl aspect-[4/3] bg-gray-100">
+                <img src="/step1.png" alt="Add product details" className="object-cover w-full h-full" />
+              </div>
+              <div className="order-1 md:order-2">
+                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                  <span className="text-primary font-bold text-xl">1</span>
                 </div>
-              </FadeIn>
+                <h3 className="text-3xl font-bold mb-4">Add your product details</h3>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  Upload specs, images, or just a description. AI translates it into exactly what suppliers need, formatting it into professional industrial spec sheets automatically.
+                </p>
+              </div>
+            </div>
+
+            {/* Step 2 */}
+            <div className="grid md:grid-cols-2 gap-16 items-center">
+              <div>
+                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                  <span className="text-primary font-bold text-xl">2</span>
+                </div>
+                <h3 className="text-3xl font-bold mb-4">Get multiple quotes from the best suppliers</h3>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  Let AI and sourcing experts find vetted factories for your product. Transparent quotes, reliable suppliers, and significantly lower unit costs compared to open marketplaces.
+                </p>
+              </div>
+              <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-[4/3] bg-gray-100">
+                <img src="/step2.png" alt="Get quotes" className="object-cover w-full h-full" />
+              </div>
+            </div>
+
+            {/* Step 3 */}
+            <div className="grid md:grid-cols-2 gap-16 items-center">
+              <div className="order-2 md:order-1 relative rounded-2xl overflow-hidden shadow-xl aspect-[4/3] bg-gray-100">
+                <img src="/step3.png" alt="Order samples" className="object-cover w-full h-full" />
+              </div>
+              <div className="order-1 md:order-2">
+                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                  <span className="text-primary font-bold text-xl">3</span>
+                </div>
+                <h3 className="text-3xl font-bold mb-4">Order samples, pick a supplier, get better pricing</h3>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  Review physical samples and pick manufacturers with confidence. We handle the communication and negotiate aggressively on your behalf.
+                </p>
+              </div>
+            </div>
+
+            {/* Step 4 */}
+            <div className="grid md:grid-cols-2 gap-16 items-center">
+              <div>
+                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                  <span className="text-primary font-bold text-xl">4</span>
+                </div>
+                <h3 className="text-3xl font-bold mb-4">Onsite QA and delivery handled for you</h3>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  We manage production end-to-end with onsite quality checks, logistics oversight, and freight forwarding directly to your warehouse.
+                </p>
+              </div>
+              <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-[4/3] bg-gray-100">
+                <img src="/step4.png" alt="QA and delivery" className="object-cover w-full h-full" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Supplier Quotes UI Section */}
+      <section className="py-24 bg-gray-50 border-y border-gray-100">
+        <div className="container mx-auto px-6">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 mb-4">Get multiple quotes from the best suppliers</h2>
+            <p className="text-lg text-gray-600">Vetted manufacturers competing for your project.</p>
+          </div>
+
+          <div className="max-w-4xl mx-auto grid gap-4">
+            {[
+              { name: 'Angela', company: 'Industrial Textiles', location: 'Surat', rating: '98%', price: '$42.50', badge: 'Top Pick', badgeColor: 'bg-primary/10 text-primary border-primary/20' },
+              { name: 'Frank', company: 'Master Weavers', location: 'Jaipur', rating: '99%', price: '$38.90', badge: 'Best Value', badgeColor: 'bg-green-100 text-green-700 border-green-200' },
+              { name: 'Jason', company: 'Global Logistics', location: 'Nasik', rating: '95%', price: '$41.00', badge: null }
+            ].map((supplier, i) => (
+              <Card key={i} className="border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                <CardContent className="p-6 flex items-center justify-between">
+                  <div className="flex items-center gap-6">
+                    <Avatar className="h-14 w-14 border border-gray-100">
+                      <AvatarFallback className="bg-gray-100 text-gray-600 font-semibold">{supplier.name[0]}</AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <div className="flex items-center gap-3 mb-1">
+                        <h4 className="font-semibold text-gray-900 text-lg">{supplier.name}</h4>
+                        {supplier.badge && (
+                          <Badge variant="outline" className={supplier.badgeColor}>{supplier.badge}</Badge>
+                        )}
+                      </div>
+                      <p className="text-sm text-gray-500 font-medium">
+                        {supplier.company} · {supplier.location} · <span className="text-green-600">{supplier.rating} Rating</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-2xl font-bold text-gray-900">{supplier.price}</div>
+                    <div className="text-sm text-gray-500">per unit</div>
+                  </div>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="bg-white py-20 px-6">
-        <div className="max-w-4xl mx-auto bg-[#111111] rounded-3xl p-16 text-center">
-          <FadeIn>
-            <h2 className="text-4xl font-black text-white mb-4">Ready to source from India?</h2>
-            <p className="text-lg text-gray-400 font-medium mb-10">Join 200+ brands sourcing smarter with Proquoment.</p>
-            <a
-              href="https://www.proquoment.in/waitlist"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-block bg-[#0000EE] hover:bg-blue-700 text-white font-bold px-10 py-4 rounded-full transition-colors shadow-lg text-lg mb-6"
-            >
-              Start sourcing for free
-            </a>
-            <div className="text-sm text-gray-500 font-medium">
-              No commitment &middot; 48-hour response
-            </div>
-          </FadeIn>
+      {/* Production Timeline */}
+      <section className="py-32">
+        <div className="container mx-auto px-6">
+          <div className="max-w-3xl mb-16">
+            <h2 className="text-4xl font-bold tracking-tight text-gray-900 mb-6">Onsite QA and delivery handled for you</h2>
+            <p className="text-xl text-gray-600">We don't just find the supplier. We oversee the entire production cycle.</p>
+          </div>
+
+          <div className="grid md:grid-cols-4 gap-8">
+            {[
+              { icon: PackageSearch, title: 'Sample requested', desc: 'Material specs confirmed. Prototype production initiated.' },
+              { icon: ShieldCheck, title: 'Payment completed', desc: 'Secure escrow financing finalized. Material procurement has begun.' },
+              { icon: Factory, title: 'Production started', desc: 'Cutting and assembly in progress. Real-time factory floor updates active.' },
+              { icon: Truck, title: 'QA completed', desc: 'On-site inspectors verified the shipment. Products cleared for global dispatch.' }
+            ].map((step, i) => (
+              <div key={i} className="relative">
+                {i !== 3 && <div className="hidden md:block absolute top-6 left-12 right-0 h-px bg-gray-200" />}
+                <div className="relative z-10 w-12 h-12 bg-white border-2 border-gray-100 shadow-sm rounded-full flex items-center justify-center mb-6">
+                  <step.icon className="w-5 h-5 text-primary" />
+                </div>
+                <h4 className="text-lg font-bold mb-3">{step.title}</h4>
+                <p className="text-gray-600 leading-relaxed text-sm">{step.desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      <FooterBar />
+      {/* Scrolling Ticker */}
+      <section className="py-16 bg-gray-900 overflow-hidden text-white">
+        <div className="flex whitespace-nowrap">
+          <div className="animate-marquee flex gap-16 items-center px-8">
+            {[...Array(2)].map((_, i) => (
+              <React.Fragment key={i}>
+                <div className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-primary" /><span className="font-medium text-lg">Priya · Mumbai · Textiles</span></div>
+                <div className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-primary" /><span className="font-medium text-lg">Rajesh · Surat · Garments</span></div>
+                <div className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-primary" /><span className="font-medium text-lg">Anita · Bangalore · Electronics</span></div>
+                <div className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-primary" /><span className="font-medium text-lg">Mahesh · Chennai · Automotive</span></div>
+                <div className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-primary" /><span className="font-medium text-lg">Deepa · Delhi · Packaging</span></div>
+              </React.Fragment>
+            ))}
+          </div>
+          {/* Duplicate for seamless looping */}
+          <div className="animate-marquee flex gap-16 items-center px-8" aria-hidden="true">
+            {[...Array(2)].map((_, i) => (
+              <React.Fragment key={i}>
+                <div className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-primary" /><span className="font-medium text-lg">Priya · Mumbai · Textiles</span></div>
+                <div className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-primary" /><span className="font-medium text-lg">Rajesh · Surat · Garments</span></div>
+                <div className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-primary" /><span className="font-medium text-lg">Anita · Bangalore · Electronics</span></div>
+                <div className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-primary" /><span className="font-medium text-lg">Mahesh · Chennai · Automotive</span></div>
+                <div className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-primary" /><span className="font-medium text-lg">Deepa · Delhi · Packaging</span></div>
+              </React.Fragment>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA / Waitlist */}
+      <section className="py-32 relative overflow-hidden">
+        <div className="absolute inset-0 bg-primary/5"></div>
+        <div className="container mx-auto px-6 relative z-10 text-center">
+          <Badge variant="outline" className="bg-white/80 border-primary/20 text-primary mb-8 px-4 py-1.5 text-sm">
+            Limited Access · Currently accepting applications
+          </Badge>
+          <h2 className="text-5xl font-bold tracking-tight text-gray-900 mb-6">Join the Industrial Waitlist</h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed">
+            We are selectively onboarding partners for the upcoming production cycle. Secure your place in the future of automated sourcing.
+          </p>
+          <Button size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-xl px-10 h-14 text-lg font-semibold shadow-lg shadow-primary/25" onClick={() => window.open('https://www.proquoment.in/waitlist', '_blank')}>
+            Get Priority Access <ArrowRight className="ml-2 w-5 h-5" />
+          </Button>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-12 border-t border-gray-100 bg-white">
+        <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="font-bold text-xl tracking-tight">Proquoment.</div>
+          <div className="flex gap-6 text-sm font-medium text-gray-500">
+            <a href="#how-it-works" className="hover:text-primary transition-colors">How it works</a>
+            <a href="#pricing" className="hover:text-primary transition-colors">Pricing</a>
+            <a href="#suppliers" className="hover:text-primary transition-colors">For Suppliers</a>
+            <a href="https://www.proquoment.in/contact" target="_blank" rel="noreferrer" className="hover:text-primary transition-colors">Contact</a>
+          </div>
+          <div className="text-sm text-gray-400">
+            © 2025 Proquoment. All rights reserved.
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

@@ -2,27 +2,29 @@ import { Link } from "wouter";
 
 export default function FooterBar() {
   return (
-    <footer className="bg-[#050A1F] px-8 py-16 border-t border-[#000EEF]">
+    <footer className="bg-[#111111] text-white px-8 py-20">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between gap-12">
         <div className="flex flex-col gap-4 max-w-sm">
-          <div className="flex items-center gap-3">
-            <div className="w-3 h-3 bg-[#000EEF]" />
-            <span className="font-mono text-lg tracking-widest font-bold text-white">PROQUOMENT</span>
+          <div className="font-sans text-2xl font-bold flex items-baseline mb-2">
+            Proquoment<span className="text-[#0000EE]">.</span>
           </div>
-          <p className="text-sm text-gray-500 font-medium">Industrial Procurement Intelligence</p>
+          <p className="text-[15px] text-gray-400 font-medium">
+            The world's first AI sourcing agent for Indian manufacturing.
+          </p>
         </div>
         
-        <div className="flex flex-col sm:flex-row gap-12 md:gap-24 text-sm">
+        <div className="flex flex-col sm:flex-row gap-12 md:gap-24 text-[15px]">
           <div className="flex flex-col gap-4">
             <div className="font-bold text-white mb-2">Platform</div>
             <Link href="/#how-it-works" className="text-gray-400 hover:text-white transition-colors">How it works</Link>
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">Pricing</a>
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">About</a>
+            <Link href="/#pricing" className="text-gray-400 hover:text-white transition-colors">Pricing</Link>
+            <Link href="/suppliers" className="text-gray-400 hover:text-white transition-colors">For Suppliers</Link>
+            <a href="#" className="text-gray-400 hover:text-white transition-colors">Latest news</a>
           </div>
           <div className="flex flex-col gap-4">
-            <div className="font-bold text-white mb-2">Suppliers</div>
-            <Link href="/suppliers#register" className="text-gray-400 hover:text-white transition-colors">Register</Link>
+            <div className="font-bold text-white mb-2">Account</div>
             <Link href="/sign-in" className="text-gray-400 hover:text-white transition-colors">Sign in</Link>
+            <a href="https://www.proquoment.in/waitlist" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-white transition-colors">Get started</a>
           </div>
           <div className="flex flex-col gap-4">
             <div className="font-bold text-white mb-2">Legal</div>
@@ -32,9 +34,9 @@ export default function FooterBar() {
         </div>
       </div>
       
-      <div className="max-w-6xl mx-auto mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
-        <div className="text-sm text-gray-600 font-mono">
-          &copy; 2025 Proquoment Technologies Pvt. Ltd.
+      <div className="max-w-6xl mx-auto mt-20 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="text-[14px] text-gray-500">
+          &copy; 2025 Proquoment. All rights reserved.
         </div>
       </div>
     </footer>

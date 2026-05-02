@@ -20,8 +20,9 @@ export default function SignInPage() {
     <div className="min-h-screen bg-white flex flex-col">
       {/* Nav */}
       <nav className="w-full border-b border-gray-100 px-6 h-16 flex items-center justify-between">
-        <Link href="/" className="text-xl font-bold tracking-tight text-gray-900">
-          Proquoment<span className="text-[#000EEF]">.</span>
+        <Link href="/" className="flex items-center gap-2.5">
+          <img src="/logo.png" alt="Proquoment" className="w-8 h-8 rounded-xl object-cover" />
+          <span className="text-xl font-bold tracking-tight text-gray-900">Proquoment<span className="text-[#000EEF]">.</span></span>
         </Link>
         <Link href="/" className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 transition-colors">
           <ArrowLeft className="w-4 h-4" /> Back to home

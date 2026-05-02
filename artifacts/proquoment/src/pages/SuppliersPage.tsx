@@ -146,8 +146,9 @@ export default function SuppliersPage() {
       {/* Nav */}
       <nav className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white/90 backdrop-blur-md">
         <div className="container mx-auto px-6 h-20 flex items-center justify-between">
-          <Link href="/" className="text-2xl font-bold tracking-tight">
-            Proquoment<span className="text-[#000EEF]">.</span>
+          <Link href="/" className="flex items-center gap-2.5">
+            <img src="/logo.png" alt="Proquoment" className="w-9 h-9 rounded-xl object-cover" />
+            <span className="text-2xl font-bold tracking-tight">Proquoment<span className="text-[#000EEF]">.</span></span>
           </Link>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
             <Link href="/#how-it-works" className="hover:text-[#000EEF] transition-colors">How it works</Link>

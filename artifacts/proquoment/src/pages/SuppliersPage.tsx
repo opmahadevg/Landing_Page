@@ -14,6 +14,8 @@ import {
   Star,
   MapPin,
   Clock,
+  Eye,
+  EyeOff,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -132,19 +134,11 @@ const categories = [
 ];
 
 export default function SuppliersPage() {
-  const [formData, setFormData] = useState({
-    company: "",
-    name: "",
-    email: "",
-    phone: "",
-    location: "",
-    category: "",
-    capacity: "",
-    password: "",
-  });
+  const [authMode, setAuthMode] = useState<"signin" | "signup">("signin");
+  const [showPassword, setShowPassword] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  const openSupplierPortal = () => {
+    window.open("https://supplier.proquoment.in/", "_blank");
   };
 
   return (
@@ -160,14 +154,15 @@ export default function SuppliersPage() {
             <Link href="/suppliers" className="text-[#000EEF] font-semibold border-b-2 border-[#000EEF] pb-0.5">For Suppliers</Link>
           </div>
           <div className="flex items-center gap-4">
-            <Link href="/signin">
-              <Button variant="ghost" className="font-semibold text-sm">Sign in</Button>
-            </Link>
-            <a href="#signup-form">
-              <Button className="bg-[#000EEF] hover:bg-[#000EEF]/90 text-white font-semibold rounded-lg px-5 text-sm">
-                Register as Supplier
-              </Button>
+            <a href="#supplier-auth">
+              <Button variant="ghost" className="font-semibold text-sm">Supplier Sign in</Button>
             </a>
+            <Button
+              className="bg-[#000EEF] hover:bg-[#000EEF]/90 text-white font-semibold rounded-lg px-5 text-sm"
+              onClick={openSupplierPortal}
+            >
+              Apply as Supplier
+            </Button>
           </div>
         </div>
       </nav>
@@ -190,16 +185,18 @@ export default function SuppliersPage() {
               Join Proquoment's verified supplier network and get matched with international buyers looking for exactly what you make — from Surat to Seattle.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href="#signup-form">
-                <Button size="lg" className="bg-[#000EEF] hover:bg-[#000EEF]/90 text-white rounded-xl px-8 h-14 text-base font-semibold shadow-lg shadow-[#000EEF]/20">
-                  Apply as a Supplier <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
-              </a>
-              <Link href="/signin">
+              <Button
+                size="lg"
+                className="bg-[#000EEF] hover:bg-[#000EEF]/90 text-white rounded-xl px-8 h-14 text-base font-semibold shadow-lg shadow-[#000EEF]/20"
+                onClick={openSupplierPortal}
+              >
+                Apply as a Supplier <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
+              <a href="#supplier-auth">
                 <Button size="lg" variant="outline" className="rounded-xl px-8 h-14 text-base font-semibold border-gray-200">
                   Already a supplier? Sign in
                 </Button>
-              </Link>
+              </a>
             </div>
           </motion.div>
 
@@ -356,155 +353,130 @@ export default function SuppliersPage() {
         </div>
       </section>
 
-      {/* Sign up form */}
-      <section id="signup-form" className="py-28">
+      {/* Supplier Auth — Sign In / Sign Up */}
+      <section id="supplier-auth" className="py-28 bg-gray-50 border-t border-gray-100">
         <div className="container mx-auto px-6">
-          <div className="max-w-2xl mx-auto">
-            <motion.div {...fadeUp} className="text-center mb-12">
+          <div className="max-w-md mx-auto">
+            <motion.div {...fadeUp} className="text-center mb-10">
               <Badge className="bg-[#000EEF]/10 text-[#000EEF] border-[#000EEF]/20 mb-4 px-4 py-1.5 text-sm font-semibold">
-                Supplier Registration
+                Supplier Portal
               </Badge>
-              <h2 className="text-4xl font-bold tracking-tight text-gray-900 mb-4">
-                Apply as a Supplier
+              <h2 className="text-3xl font-bold tracking-tight text-gray-900 mb-3">
+                {authMode === "signin" ? "Sign in to your supplier account" : "Create a supplier account"}
               </h2>
-              <p className="text-gray-600 text-lg">
-                Tell us about your manufacturing capabilities. Our team will review your application within 48 hours.
+              <p className="text-gray-500 text-sm">
+                {authMode === "signin"
+                  ? "Access your RFQ dashboard, quotes, and order history."
+                  : "Get started and start receiving RFQs from global buyers."}
               </p>
+            </motion.div>
+
+            {/* Toggle */}
+            <motion.div {...fadeUp} className="flex rounded-xl bg-white border border-gray-200 p-1 mb-6 gap-1">
+              <button
+                onClick={() => setAuthMode("signin")}
+                className={`flex-1 py-2.5 rounded-lg text-sm font-semibold transition-all ${
+                  authMode === "signin"
+                    ? "bg-[#000EEF] text-white shadow"
+                    : "text-gray-500 hover:text-gray-700"
+                }`}
+              >
+                Sign In
+              </button>
+              <button
+                onClick={() => setAuthMode("signup")}
+                className={`flex-1 py-2.5 rounded-lg text-sm font-semibold transition-all ${
+                  authMode === "signup"
+                    ? "bg-[#000EEF] text-white shadow"
+                    : "text-gray-500 hover:text-gray-700"
+                }`}
+              >
+                Sign Up
+              </button>
             </motion.div>
 
             <motion.form
               {...fadeUp}
               onSubmit={(e) => e.preventDefault()}
-              className="bg-white border border-gray-100 rounded-2xl shadow-sm p-8 space-y-5"
+              className="bg-white border border-gray-100 rounded-2xl shadow-sm p-8 space-y-4"
             >
-              <div className="grid sm:grid-cols-2 gap-5">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1.5">Company / Business Name *</label>
-                  <input
-                    name="company"
-                    value={formData.company}
-                    onChange={handleChange}
-                    type="text"
-                    placeholder="e.g. Rajesh Textiles Pvt Ltd"
-                    className="w-full h-11 px-4 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#000EEF]/30 focus:border-[#000EEF] transition"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1.5">Contact Person Name *</label>
-                  <input
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    type="text"
-                    placeholder="Your full name"
-                    className="w-full h-11 px-4 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#000EEF]/30 focus:border-[#000EEF] transition"
-                  />
-                </div>
+              {authMode === "signup" && (
+                <>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1.5">Company / Business Name</label>
+                    <input
+                      type="text"
+                      placeholder="e.g. Rajesh Textiles Pvt Ltd"
+                      autoComplete="organization"
+                      className="w-full h-11 px-4 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#000EEF]/30 focus:border-[#000EEF] transition"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1.5">Contact Person Name</label>
+                    <input
+                      type="text"
+                      placeholder="Your full name"
+                      autoComplete="name"
+                      className="w-full h-11 px-4 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#000EEF]/30 focus:border-[#000EEF] transition"
+                    />
+                  </div>
+                </>
+              )}
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1.5">Business Email</label>
+                <input
+                  type="email"
+                  placeholder="you@company.com"
+                  autoComplete="email"
+                  className="w-full h-11 px-4 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#000EEF]/30 focus:border-[#000EEF] transition"
+                />
               </div>
 
-              <div className="grid sm:grid-cols-2 gap-5">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1.5">Business Email *</label>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1.5">Password</label>
+                <div className="relative">
                   <input
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    type="email"
-                    placeholder="you@company.com"
-                    className="w-full h-11 px-4 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#000EEF]/30 focus:border-[#000EEF] transition"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1.5">Phone Number *</label>
-                  <input
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    type="tel"
-                    placeholder="+91 98765 43210"
-                    className="w-full h-11 px-4 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#000EEF]/30 focus:border-[#000EEF] transition"
-                  />
-                </div>
-              </div>
-
-              <div className="grid sm:grid-cols-2 gap-5">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                    <span className="flex items-center gap-1.5"><MapPin className="w-3.5 h-3.5" /> Factory Location *</span>
-                  </label>
-                  <input
-                    name="location"
-                    value={formData.location}
-                    onChange={handleChange}
-                    type="text"
-                    placeholder="e.g. Surat, Gujarat"
-                    className="w-full h-11 px-4 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#000EEF]/30 focus:border-[#000EEF] transition"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1.5">Primary Category *</label>
-                  <select
-                    name="category"
-                    value={formData.category}
-                    onChange={handleChange}
-                    className="w-full h-11 px-4 rounded-lg border border-gray-200 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#000EEF]/30 focus:border-[#000EEF] transition bg-white"
-                  >
-                    <option value="">Select category</option>
-                    {categories.map((c) => <option key={c}>{c}</option>)}
-                  </select>
-                </div>
-              </div>
-
-              <div className="grid sm:grid-cols-2 gap-5">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                    <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5" /> Monthly Production Capacity *</span>
-                  </label>
-                  <select
-                    name="capacity"
-                    value={formData.capacity}
-                    onChange={handleChange}
-                    className="w-full h-11 px-4 rounded-lg border border-gray-200 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#000EEF]/30 focus:border-[#000EEF] transition bg-white"
-                  >
-                    <option value="">Select capacity</option>
-                    <option>Less than 1,000 units</option>
-                    <option>1,000 – 10,000 units</option>
-                    <option>10,000 – 100,000 units</option>
-                    <option>100,000+ units</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1.5">Create Password *</label>
-                  <input
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     placeholder="Min. 8 characters"
-                    className="w-full h-11 px-4 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#000EEF]/30 focus:border-[#000EEF] transition"
+                    autoComplete={authMode === "signup" ? "new-password" : "current-password"}
+                    className="w-full h-11 px-4 pr-11 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#000EEF]/30 focus:border-[#000EEF] transition"
                   />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  >
+                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  </button>
                 </div>
               </div>
 
-              <div className="pt-2">
-                <Button
-                  type="submit"
-                  className="w-full h-12 bg-[#000EEF] hover:bg-[#000EEF]/90 text-white font-semibold rounded-xl text-sm shadow-lg shadow-[#000EEF]/20"
-                >
-                  Submit Supplier Application <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
-                <p className="text-center text-xs text-gray-400 mt-4">
-                  Our team reviews all applications within 48 hours. You'll receive an email once approved.
-                </p>
-              </div>
+              {authMode === "signin" && (
+                <div className="flex justify-end">
+                  <button type="button" className="text-xs text-[#000EEF] hover:underline">Forgot password?</button>
+                </div>
+              )}
 
-              <div className="border-t border-gray-100 pt-5 text-center">
-                <p className="text-sm text-gray-500">
-                  Already registered?{" "}
-                  <Link href="/signin" className="text-[#000EEF] font-semibold hover:underline">
-                    Sign in to your supplier dashboard
-                  </Link>
+              <Button
+                type="submit"
+                className="w-full h-11 bg-[#000EEF] hover:bg-[#000EEF]/90 text-white font-semibold rounded-lg text-sm"
+              >
+                {authMode === "signin" ? "Sign In to Supplier Dashboard" : "Create Supplier Account"}
+              </Button>
+
+              <div className="border-t border-gray-100 pt-4 text-center">
+                <p className="text-xs text-gray-500 mb-3">
+                  Want to apply as a new supplier with a full profile?
                 </p>
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="w-full h-10 rounded-lg text-sm border-[#000EEF]/30 text-[#000EEF] hover:bg-[#000EEF]/5"
+                  onClick={openSupplierPortal}
+                >
+                  Apply via Supplier Portal <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
               </div>
             </motion.form>
 
@@ -520,7 +492,36 @@ export default function SuppliersPage() {
                 </div>
               ))}
             </div>
+
+            <p className="text-center text-sm text-gray-500 mt-4">
+              Looking to buy?{" "}
+              <Link href="/signin" className="text-[#000EEF] font-semibold hover:underline">
+                Sign in as a Buyer
+              </Link>
+            </p>
           </div>
+        </div>
+      </section>
+
+      {/* CTA to supplier portal */}
+      <section className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[#000EEF]/3" />
+        <div className="container mx-auto px-6 relative z-10 text-center">
+          <motion.div {...fadeUp}>
+            <h2 className="text-4xl font-bold tracking-tight text-gray-900 mb-4">
+              Ready to start receiving international orders?
+            </h2>
+            <p className="text-lg text-gray-600 max-w-xl mx-auto mb-8">
+              Apply through our dedicated supplier portal. Our team reviews every application within 48 hours.
+            </p>
+            <Button
+              size="lg"
+              className="bg-[#000EEF] hover:bg-[#000EEF]/90 text-white rounded-xl px-10 h-14 text-base font-semibold shadow-lg shadow-[#000EEF]/20"
+              onClick={openSupplierPortal}
+            >
+              Apply at supplier.proquoment.in <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+          </motion.div>
         </div>
       </section>
 
@@ -531,7 +532,7 @@ export default function SuppliersPage() {
           <div className="flex gap-6 text-sm font-medium text-gray-500">
             <Link href="/" className="hover:text-[#000EEF] transition-colors">Home</Link>
             <Link href="/suppliers" className="hover:text-[#000EEF] transition-colors">For Suppliers</Link>
-            <Link href="/signin" className="hover:text-[#000EEF] transition-colors">Sign in</Link>
+            <Link href="/signin" className="hover:text-[#000EEF] transition-colors">Buyer Sign in</Link>
             <a href="https://www.proquoment.in/contact" target="_blank" rel="noreferrer" className="hover:text-[#000EEF] transition-colors">Contact</a>
           </div>
           <div className="text-sm text-gray-400">© 2025 Proquoment. All rights reserved.</div>

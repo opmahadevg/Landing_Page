@@ -1,13 +1,20 @@
-import { useState } from "react";
-import { Link } from "wouter";
+import { useState, useEffect } from "react";
+import { Link, useSearch } from "wouter";
 import { motion } from "framer-motion";
 import { ArrowLeft, Eye, EyeOff, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function SignInPage() {
-  const [mode, setMode] = useState<"buyer" | "supplier">("buyer");
+  const search = useSearch();
+  const params = new URLSearchParams(search);
+  const defaultSignup = params.get("mode") === "signup";
+
+  const [isSignup, setIsSignup] = useState(defaultSignup);
   const [showPassword, setShowPassword] = useState(false);
-  const [isSignup, setIsSignup] = useState(false);
+
+  useEffect(() => {
+    setIsSignup(defaultSignup);
+  }, [defaultSignup]);
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
@@ -27,7 +34,7 @@ export default function SignInPage() {
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-white/80 text-xs font-semibold tracking-wide mb-12 border border-white/10">
               <Globe className="w-3.5 h-3.5" />
-              Industrial Supply Chain Intelligence
+              For Buyers
             </div>
             <h2 className="text-4xl font-bold leading-tight mb-6">
               Source smarter.<br />Build faster.<br />Pay less.
@@ -51,7 +58,7 @@ export default function SignInPage() {
           </div>
         </div>
 
-        {/* Right panel — form */}
+        {/* Right panel — buyer form */}
         <div className="flex-1 flex items-center justify-center px-6 py-12">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -59,96 +66,51 @@ export default function SignInPage() {
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             className="w-full max-w-md"
           >
-            {/* Mode toggle */}
-            <div className="flex rounded-xl bg-gray-100 p-1 mb-8 gap-1">
-              <button
-                onClick={() => setMode("buyer")}
-                className={`flex-1 py-2.5 rounded-lg text-sm font-semibold transition-all ${
-                  mode === "buyer"
-                    ? "bg-white shadow text-gray-900"
-                    : "text-gray-500 hover:text-gray-700"
-                }`}
-              >
-                I am a Buyer
-              </button>
-              <button
-                onClick={() => { setMode("supplier"); setIsSignup(true); }}
-                className={`flex-1 py-2.5 rounded-lg text-sm font-semibold transition-all ${
-                  mode === "supplier"
-                    ? "bg-white shadow text-gray-900"
-                    : "text-gray-500 hover:text-gray-700"
-                }`}
-              >
-                I am a Supplier
-              </button>
-            </div>
-
             <div className="mb-8">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#000EEF]/8 text-[#000EEF] text-xs font-semibold tracking-wide mb-6 border border-[#000EEF]/15">
+                Buyer Account
+              </div>
               <h1 className="text-2xl font-bold text-gray-900 mb-1">
-                {mode === "buyer"
-                  ? isSignup ? "Create your account" : "Sign in to Proquoment"
-                  : "Join as a Supplier"}
+                {isSignup ? "Create your buyer account" : "Sign in to Proquoment"}
               </h1>
               <p className="text-gray-500 text-sm">
-                {mode === "buyer"
-                  ? isSignup
-                    ? "Start sourcing with AI-powered procurement."
-                    : "Access your sourcing dashboard."
-                  : "Register to receive RFQs from global buyers."}
+                {isSignup
+                  ? "Start sourcing with AI-powered procurement."
+                  : "Access your sourcing dashboard."}
               </p>
             </div>
 
-            <form
-              onSubmit={(e) => e.preventDefault()}
-              className="space-y-4"
-            >
-              {(isSignup || mode === "supplier") && (
+            <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
+              {isSignup && (
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                    {mode === "supplier" ? "Company / Business Name" : "Full Name"}
-                  </label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1.5">Full Name</label>
                   <input
                     type="text"
-                    placeholder={mode === "supplier" ? "e.g. Rajesh Textiles Pvt Ltd" : "Your full name"}
+                    placeholder="Your full name"
+                    autoComplete="name"
                     className="w-full h-11 px-4 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#000EEF]/30 focus:border-[#000EEF] transition"
                   />
                 </div>
               )}
 
-              {mode === "supplier" && (
-                <>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1.5">Manufacturing Location</label>
-                    <input
-                      type="text"
-                      placeholder="e.g. Surat, Gujarat"
-                      className="w-full h-11 px-4 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#000EEF]/30 focus:border-[#000EEF] transition"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1.5">Product Categories</label>
-                    <select className="w-full h-11 px-4 rounded-lg border border-gray-200 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#000EEF]/30 focus:border-[#000EEF] transition bg-white">
-                      <option value="">Select primary category</option>
-                      <option>Textiles &amp; Garments</option>
-                      <option>Automotive Parts</option>
-                      <option>Electronics</option>
-                      <option>Packaging</option>
-                      <option>Industrial Equipment</option>
-                      <option>Chemicals &amp; Plastics</option>
-                      <option>Food &amp; Agriculture</option>
-                      <option>Other</option>
-                    </select>
-                  </div>
-                </>
+              {isSignup && (
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1.5">Company Name</label>
+                  <input
+                    type="text"
+                    placeholder="Your company or brand"
+                    autoComplete="organization"
+                    className="w-full h-11 px-4 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#000EEF]/30 focus:border-[#000EEF] transition"
+                  />
+                </div>
               )}
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                  {mode === "supplier" ? "Business Email" : "Email address"}
-                </label>
+                <label className="block text-sm font-medium text-gray-700 mb-1.5">Email address</label>
                 <input
                   type="email"
-                  placeholder={mode === "supplier" ? "you@business.com" : "you@company.com"}
+                  placeholder="you@company.com"
+                  autoComplete="email"
                   className="w-full h-11 px-4 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#000EEF]/30 focus:border-[#000EEF] transition"
                 />
               </div>
@@ -159,6 +121,7 @@ export default function SignInPage() {
                   <input
                     type={showPassword ? "text" : "password"}
                     placeholder="Min. 8 characters"
+                    autoComplete={isSignup ? "new-password" : "current-password"}
                     className="w-full h-11 px-4 pr-11 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#000EEF]/30 focus:border-[#000EEF] transition"
                   />
                   <button
@@ -171,20 +134,7 @@ export default function SignInPage() {
                 </div>
               </div>
 
-              {mode === "supplier" && (
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1.5">Annual Production Capacity</label>
-                  <select className="w-full h-11 px-4 rounded-lg border border-gray-200 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#000EEF]/30 focus:border-[#000EEF] transition bg-white">
-                    <option value="">Select capacity</option>
-                    <option>Less than 1,000 units/month</option>
-                    <option>1,000 – 10,000 units/month</option>
-                    <option>10,000 – 100,000 units/month</option>
-                    <option>100,000+ units/month</option>
-                  </select>
-                </div>
-              )}
-
-              {!isSignup && mode === "buyer" && (
+              {!isSignup && (
                 <div className="flex justify-end">
                   <button type="button" className="text-xs text-[#000EEF] hover:underline">
                     Forgot password?
@@ -196,39 +146,35 @@ export default function SignInPage() {
                 type="submit"
                 className="w-full h-11 bg-[#000EEF] hover:bg-[#000EEF]/90 text-white font-semibold rounded-lg text-sm mt-2"
               >
-                {mode === "supplier"
-                  ? "Apply as Supplier"
-                  : isSignup
-                  ? "Create Account"
-                  : "Sign In"}
+                {isSignup ? "Sign up & Start Sourcing" : "Sign In"}
               </Button>
             </form>
 
-            {mode === "buyer" && (
-              <p className="text-center text-sm text-gray-500 mt-6">
-                {isSignup ? "Already have an account?" : "Don't have an account?"}{" "}
-                <button
-                  onClick={() => setIsSignup(!isSignup)}
+            <p className="text-center text-sm text-gray-500 mt-6">
+              {isSignup ? "Already have an account?" : "Don't have an account?"}{" "}
+              <button
+                onClick={() => setIsSignup(!isSignup)}
+                className="text-[#000EEF] font-semibold hover:underline"
+              >
+                {isSignup ? "Sign in" : "Sign up"}
+              </button>
+            </p>
+
+            <div className="border-t border-gray-100 mt-8 pt-6 text-center">
+              <p className="text-sm text-gray-500">
+                Are you a supplier?{" "}
+                <a
+                  href="https://supplier.proquoment.in/"
+                  target="_blank"
+                  rel="noreferrer"
                   className="text-[#000EEF] font-semibold hover:underline"
                 >
-                  {isSignup ? "Sign in" : "Sign up"}
-                </button>
+                  Go to Supplier Portal
+                </a>
               </p>
-            )}
+            </div>
 
-            {mode === "supplier" && (
-              <p className="text-center text-sm text-gray-500 mt-6">
-                Already registered as a supplier?{" "}
-                <button
-                  onClick={() => setIsSignup(false)}
-                  className="text-[#000EEF] font-semibold hover:underline"
-                >
-                  Sign in
-                </button>
-              </p>
-            )}
-
-            <p className="text-center text-xs text-gray-400 mt-8">
+            <p className="text-center text-xs text-gray-400 mt-6">
               By continuing, you agree to Proquoment's{" "}
               <a href="#" className="underline">Terms of Service</a> and{" "}
               <a href="#" className="underline">Privacy Policy</a>.

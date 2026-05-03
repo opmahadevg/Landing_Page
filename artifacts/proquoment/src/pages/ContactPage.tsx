@@ -125,6 +125,12 @@ export default function ContactPage() {
     setLoading(true);
     setError(null);
 
+    if (!supabase) {
+      setLoading(false);
+      setError("Contact form is not configured yet. Please email us directly at Proquoment@gmail.com.");
+      return;
+    }
+
     const { error: supabaseError } = await supabase.from("contacts").insert({
       full_name: form.full_name,
       email: form.email,

@@ -138,7 +138,11 @@ export default function SuppliersPage() {
   const [showPassword, setShowPassword] = useState(false);
 
   const openSupplierPortal = () => {
-    window.open("https://supplier.proquoment.in/", "_blank");
+    window.open("https://form.proquoment.in", "_blank");
+  };
+
+  const openSupplierSignIn = () => {
+    window.open("https://supplier.proquoment.in", "_blank");
   };
 
   return (
@@ -155,9 +159,7 @@ export default function SuppliersPage() {
             <Link href="/suppliers" className="text-[#000EEF] font-semibold border-b-2 border-[#000EEF] pb-0.5">For Suppliers</Link>
           </div>
           <div className="flex items-center gap-4">
-            <a href="#supplier-auth">
-              <Button variant="ghost" className="font-semibold text-sm">Supplier Sign in</Button>
-            </a>
+            <Button variant="ghost" className="font-semibold text-sm" onClick={openSupplierSignIn}>Supplier Sign in</Button>
             <Button
               className="bg-[#000EEF] hover:bg-[#000EEF]/90 text-white font-semibold rounded-lg px-5 text-sm"
               onClick={openSupplierPortal}
@@ -193,11 +195,9 @@ export default function SuppliersPage() {
               >
                 Apply as a Supplier <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
-              <a href="#supplier-auth">
-                <Button size="lg" variant="outline" className="rounded-xl px-8 h-14 text-base font-semibold border-gray-200">
-                  Already a supplier? Sign in
-                </Button>
-              </a>
+              <Button size="lg" variant="outline" className="rounded-xl px-8 h-14 text-base font-semibold border-gray-200" onClick={openSupplierSignIn}>
+                Already a supplier? Sign in
+              </Button>
             </div>
           </motion.div>
 
@@ -460,8 +460,9 @@ export default function SuppliersPage() {
               )}
 
               <Button
-                type="submit"
+                type="button"
                 className="w-full h-11 bg-[#000EEF] hover:bg-[#000EEF]/90 text-white font-semibold rounded-lg text-sm"
+                onClick={authMode === "signin" ? openSupplierSignIn : openSupplierPortal}
               >
                 {authMode === "signin" ? "Sign In to Supplier Dashboard" : "Create Supplier Account"}
               </Button>
@@ -496,9 +497,12 @@ export default function SuppliersPage() {
 
             <p className="text-center text-sm text-gray-500 mt-4">
               Looking to buy?{" "}
-              <Link href="/signin" className="text-[#000EEF] font-semibold hover:underline">
+              <button
+                onClick={() => window.open('https://buyer.proquoment.in', '_blank')}
+                className="text-[#000EEF] font-semibold hover:underline"
+              >
                 Sign in as a Buyer
-              </Link>
+              </button>
             </p>
           </div>
         </div>
@@ -520,7 +524,7 @@ export default function SuppliersPage() {
               className="bg-[#000EEF] hover:bg-[#000EEF]/90 text-white rounded-xl px-10 h-14 text-base font-semibold shadow-lg shadow-[#000EEF]/20"
               onClick={openSupplierPortal}
             >
-              Apply at supplier.proquoment.in <ArrowRight className="ml-2 w-5 h-5" />
+              Apply at form.proquoment.in <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
           </motion.div>
         </div>
@@ -533,7 +537,7 @@ export default function SuppliersPage() {
           <div className="flex gap-6 text-sm font-medium text-gray-500">
             <Link href="/" className="hover:text-[#000EEF] transition-colors">Home</Link>
             <Link href="/suppliers" className="hover:text-[#000EEF] transition-colors">For Suppliers</Link>
-            <Link href="/signin" className="hover:text-[#000EEF] transition-colors">Buyer Sign in</Link>
+            <button onClick={() => window.open('https://buyer.proquoment.in', '_blank')} className="hover:text-[#000EEF] transition-colors">Buyer Sign in</button>
             <Link href="/contact" className="hover:text-[#000EEF] transition-colors">Contact</Link>
           </div>
           <div className="text-sm text-gray-400">© 2025 Proquoment. All rights reserved.</div>

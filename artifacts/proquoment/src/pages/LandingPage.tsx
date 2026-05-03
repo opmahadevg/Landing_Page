@@ -32,14 +32,10 @@ export default function LandingPage() {
             <Link href="/suppliers" className="hover:text-primary transition-colors">For Suppliers</Link>
           </div>
           <div className="flex items-center gap-4">
-            <Link href="/signin">
-              <Button variant="ghost" className="hidden sm:inline-flex font-semibold">Sign in</Button>
-            </Link>
-            <Link href="/signin?mode=signup">
-              <Button className="bg-primary hover:bg-primary/90 text-white font-semibold rounded-lg px-6">
-                Sign up &amp; Start Sourcing
-              </Button>
-            </Link>
+            <Button variant="ghost" className="hidden sm:inline-flex font-semibold" onClick={() => window.open('https://buyer.proquoment.in', '_blank')}>Sign in</Button>
+            <Button className="bg-primary hover:bg-primary/90 text-white font-semibold rounded-lg px-6" onClick={() => window.open('https://buyer.proquoment.in', '_blank')}>
+              Sign up &amp; Start Sourcing
+            </Button>
           </div>
         </div>
       </nav>
@@ -60,11 +56,9 @@ export default function LandingPage() {
                 Lower unit costs. Fewer tariffs. Premium factories. None of the work.
               </motion.p>
               <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4">
-                <Link href="/signin?mode=signup">
-                  <Button size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-xl px-8 h-14 text-base font-semibold">
-                    Sign up &amp; Start Sourcing
-                  </Button>
-                </Link>
+                <Button size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-xl px-8 h-14 text-base font-semibold" onClick={() => window.open('https://buyer.proquoment.in', '_blank')}>
+                  Sign up &amp; Start Sourcing
+                </Button>
                 <Link href="/contact">
                   <Button size="lg" variant="outline" className="rounded-xl px-8 h-14 text-base font-semibold border-gray-200 hover:bg-gray-50">
                     Book a call

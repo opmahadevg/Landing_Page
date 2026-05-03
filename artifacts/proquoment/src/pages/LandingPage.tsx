@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link, useLocation } from 'wouter';
 import { motion } from 'framer-motion';
-import { ArrowRight, CheckCircle2, Factory, Globe, MessageSquare, PackageSearch, ShieldCheck, Truck, ArrowUpRight, Zap, Settings2 } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Factory, Globe, MessageSquare, PackageSearch, ShieldCheck, Truck, ArrowUpRight, Zap, Settings2, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -320,14 +320,196 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Buyer Testimonials */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <motion.div {...{ initial: { opacity: 0, y: 24 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true }, transition: { duration: 0.6 } }} className="text-center max-w-2xl mx-auto mb-16">
+            <Badge className="bg-primary/10 text-primary border-primary/20 mb-4 px-4 py-1.5 text-sm font-semibold">Buyer Stories</Badge>
+            <h2 className="text-4xl font-bold tracking-tight text-gray-900 mb-4">Trusted by buyers around the world</h2>
+            <p className="text-lg text-gray-500">From New York to Dubai, sourcing teams rely on Proquoment to find the best Indian manufacturers.</p>
+          </motion.div>
+
+          <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-rows-2">
+            {/* Featured large card */}
+            <Card className="grid grid-rows-[auto_1fr] gap-8 sm:col-span-2 sm:p-6 lg:row-span-2 border-primary/15 shadow-sm">
+              <CardContent className="pt-6 sm:pt-0">
+                <blockquote className="grid h-full grid-rows-[1fr_auto] gap-6">
+                  <div>
+                    <div className="flex gap-0.5 mb-5">
+                      {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />)}
+                    </div>
+                    <p className="text-xl font-medium text-gray-900 leading-relaxed">
+                      "We cut our per-unit cost by 38% on our first order and haven't looked back. Proquoment's AI matched us with a factory in Tirupur that we never would have found on our own. The spec translation alone saved us weeks of back-and-forth."
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
+                    <Avatar className="size-12">
+                      <AvatarImage src="https://randomuser.me/api/portraits/men/32.jpg" alt="Marcus Webb" />
+                      <AvatarFallback>MW</AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <cite className="text-sm font-semibold text-gray-900 not-italic">Marcus Webb</cite>
+                      <span className="block text-sm text-gray-500">Head of Sourcing · Threadline Co. 🇺🇸 New York, USA</span>
+                    </div>
+                  </div>
+                </blockquote>
+              </CardContent>
+            </Card>
+
+            {/* Wide card */}
+            <Card className="md:col-span-2 border-gray-100 shadow-sm">
+              <CardContent className="h-full pt-6">
+                <blockquote className="grid h-full grid-rows-[1fr_auto] gap-6">
+                  <div>
+                    <div className="flex gap-0.5 mb-4">
+                      {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />)}
+                    </div>
+                    <p className="text-lg font-medium text-gray-800">"Three quotes in 48 hours, all from verified factories. We picked one, received samples in 10 days, and placed a bulk order within a month. Remarkable efficiency."</p>
+                  </div>
+                  <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
+                    <Avatar className="size-12">
+                      <AvatarImage src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sophie Hartmann" />
+                      <AvatarFallback>SH</AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <cite className="text-sm font-semibold text-gray-900 not-italic">Sophie Hartmann</cite>
+                      <span className="block text-sm text-gray-500">Procurement Lead · Müller Brands 🇩🇪 Berlin, Germany</span>
+                    </div>
+                  </div>
+                </blockquote>
+              </CardContent>
+            </Card>
+
+            {/* Small card 1 */}
+            <Card className="border-gray-100 shadow-sm">
+              <CardContent className="h-full pt-6">
+                <blockquote className="grid h-full grid-rows-[1fr_auto] gap-6">
+                  <div>
+                    <div className="flex gap-0.5 mb-3">
+                      {[...Array(5)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />)}
+                    </div>
+                    <p className="text-gray-700 leading-relaxed">"Onsite QA was a game-changer. Zero defects on our first container. Couldn't have managed this without Proquoment."</p>
+                  </div>
+                  <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
+                    <Avatar className="size-10">
+                      <AvatarImage src="https://randomuser.me/api/portraits/men/52.jpg" alt="Khalid Al Mansoori" />
+                      <AvatarFallback>KA</AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <cite className="text-sm font-semibold text-gray-900 not-italic">Khalid Al Mansoori</cite>
+                      <span className="block text-xs text-gray-500">Import Director 🇦🇪 Dubai, UAE</span>
+                    </div>
+                  </div>
+                </blockquote>
+              </CardContent>
+            </Card>
+
+            {/* Small card 2 */}
+            <Card className="border-gray-100 shadow-sm">
+              <CardContent className="h-full pt-6">
+                <blockquote className="grid h-full grid-rows-[1fr_auto] gap-6">
+                  <div>
+                    <div className="flex gap-0.5 mb-3">
+                      {[...Array(5)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />)}
+                    </div>
+                    <p className="text-gray-700 leading-relaxed">"Proquoment replaced three different vendors and a freight broker for us. One platform, total visibility. Brilliant."</p>
+                  </div>
+                  <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
+                    <Avatar className="size-10">
+                      <AvatarImage src="https://randomuser.me/api/portraits/women/68.jpg" alt="Amelia Chen" />
+                      <AvatarFallback>AC</AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <cite className="text-sm font-semibold text-gray-900 not-italic">Amelia Chen</cite>
+                      <span className="block text-xs text-gray-500">Operations Manager 🇦🇺 Sydney, Australia</span>
+                    </div>
+                  </div>
+                </blockquote>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Second row of 3 cards */}
+          <div className="grid gap-4 sm:grid-cols-3 mt-4">
+            <Card className="border-gray-100 shadow-sm">
+              <CardContent className="h-full pt-6">
+                <blockquote className="grid h-full grid-rows-[1fr_auto] gap-5">
+                  <div>
+                    <div className="flex gap-0.5 mb-3">
+                      {[...Array(5)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />)}
+                    </div>
+                    <p className="text-gray-700 leading-relaxed">"The AI spec translation is magic. I uploaded a napkin sketch and got a full industrial sheet back in minutes. Factories knew exactly what to quote on."</p>
+                  </div>
+                  <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
+                    <Avatar className="size-10">
+                      <AvatarImage src="https://randomuser.me/api/portraits/men/76.jpg" alt="Liam O'Brien" />
+                      <AvatarFallback>LO</AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <cite className="text-sm font-semibold text-gray-900 not-italic">Liam O'Brien</cite>
+                      <span className="block text-xs text-gray-500">Founder · Verve Gear 🇬🇧 London, UK</span>
+                    </div>
+                  </div>
+                </blockquote>
+              </CardContent>
+            </Card>
+
+            <Card className="border-gray-100 shadow-sm">
+              <CardContent className="h-full pt-6">
+                <blockquote className="grid h-full grid-rows-[1fr_auto] gap-5">
+                  <div>
+                    <div className="flex gap-0.5 mb-3">
+                      {[...Array(5)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />)}
+                    </div>
+                    <p className="text-gray-700 leading-relaxed">"We'd been burned by suppliers before. Proquoment's vetting process gave us real confidence — certifications, capacity, payment history. Everything transparent."</p>
+                  </div>
+                  <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
+                    <Avatar className="size-10">
+                      <AvatarImage src="https://randomuser.me/api/portraits/women/55.jpg" alt="Fatima Zahra" />
+                      <AvatarFallback>FZ</AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <cite className="text-sm font-semibold text-gray-900 not-italic">Fatima Zahra</cite>
+                      <span className="block text-xs text-gray-500">Supply Chain Head 🇸🇦 Riyadh, Saudi Arabia</span>
+                    </div>
+                  </div>
+                </blockquote>
+              </CardContent>
+            </Card>
+
+            <Card className="border-gray-100 shadow-sm">
+              <CardContent className="h-full pt-6">
+                <blockquote className="grid h-full grid-rows-[1fr_auto] gap-5">
+                  <div>
+                    <div className="flex gap-0.5 mb-3">
+                      {[...Array(5)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />)}
+                    </div>
+                    <p className="text-gray-700 leading-relaxed">"As a small brand sourcing internationally for the first time, having a team handle negotiations and logistics gave us confidence we couldn't get anywhere else."</p>
+                  </div>
+                  <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
+                    <Avatar className="size-10">
+                      <AvatarImage src="https://randomuser.me/api/portraits/men/88.jpg" alt="Takeshi Mori" />
+                      <AvatarFallback>TM</AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <cite className="text-sm font-semibold text-gray-900 not-italic">Takeshi Mori</cite>
+                      <span className="block text-xs text-gray-500">Co-Founder · Mori Supply 🇯🇵 Tokyo, Japan</span>
+                    </div>
+                  </div>
+                </blockquote>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="py-12 border-t border-gray-100 bg-white">
         <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="font-bold text-xl tracking-tight">Proquoment.</div>
           <div className="flex gap-6 text-sm font-medium text-gray-500">
             <a href="#how-it-works" className="hover:text-primary transition-colors">How it works</a>
-            <a href="#pricing" className="hover:text-primary transition-colors">Pricing</a>
-            <a href="#suppliers" className="hover:text-primary transition-colors">For Suppliers</a>
+            <Link href="/suppliers" className="hover:text-primary transition-colors">For Suppliers</Link>
             <a href="https://www.proquoment.in/contact" target="_blank" rel="noreferrer" className="hover:text-primary transition-colors">Contact</a>
           </div>
           <div className="text-sm text-gray-400">

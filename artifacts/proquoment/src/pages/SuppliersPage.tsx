@@ -536,8 +536,8 @@ export default function SuppliersPage() {
         <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
           <Link href="/" className="font-bold text-xl tracking-tight">Proquoment.</Link>
           <div className="flex gap-6 text-sm font-medium text-gray-500">
-            <a href="#" className="hover:text-[#000EEF] transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-[#000EEF] transition-colors">Terms of Service</a>
+            <Link href="/privacy-policy" className="hover:text-[#000EEF] transition-colors">Privacy Policy</Link>
+            <Link href="/terms-of-service" className="hover:text-[#000EEF] transition-colors">Terms of Service</Link>
           </div>
           <div className="text-sm text-gray-400">© 2025 Proquoment. All rights reserved.</div>
         </div>

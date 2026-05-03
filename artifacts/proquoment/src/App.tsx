@@ -6,6 +6,8 @@ import LandingPage from "@/pages/LandingPage";
 import SuppliersPage from "@/pages/SuppliersPage";
 import SignInPage from "@/pages/SignInPage";
 import ContactPage from "@/pages/ContactPage";
+import PrivacyPolicyPage from "@/pages/PrivacyPolicyPage";
+import TermsOfServicePage from "@/pages/TermsOfServicePage";
 import NotFound from "@/pages/not-found";
 import ScrollToTop from "@/components/ScrollToTop";
 
@@ -20,6 +22,8 @@ function Router() {
         <Route path="/suppliers" component={SuppliersPage} />
         <Route path="/signin" component={SignInPage} />
         <Route path="/contact" component={ContactPage} />
+        <Route path="/privacy-policy" component={PrivacyPolicyPage} />
+        <Route path="/terms-of-service" component={TermsOfServicePage} />
         <Route component={NotFound} />
       </Switch>
     </>

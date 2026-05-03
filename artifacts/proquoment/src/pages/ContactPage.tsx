@@ -16,9 +16,12 @@ import {
   Building2,
   User,
   ChevronDown,
+  Loader2,
+  AlertCircle,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { supabase } from "@/lib/supabase";
 
 const fadeUp = {
   initial: { opacity: 0, y: 20 },
@@ -83,14 +86,56 @@ const socials = [
   },
 ];
 
+const emptyForm = {
+  full_name: "",
+  email: "",
+  company: "",
+  phone: "",
+  inquiry_type: "",
+  country: "",
+  message: "",
+  referral: "",
+};
+
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
-  const [inquiry, setInquiry] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [form, setForm] = useState(emptyForm);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const set = (key: keyof typeof emptyForm) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
+      setForm((f) => ({ ...f, [key]: e.target.value }));
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setError(null);
+
+    const { error: supabaseError } = await supabase.from("contacts").insert({
+      full_name: form.full_name,
+      email: form.email,
+      company: form.company || null,
+      phone: form.phone || null,
+      inquiry_type: form.inquiry_type,
+      country: form.country || null,
+      message: form.message,
+      referral: form.referral || null,
+    });
+
+    setLoading(false);
+
+    if (supabaseError) {
+      setError("Something went wrong. Please try again or email us directly.");
+      console.error(supabaseError);
+    } else {
+      setSubmitted(true);
+      setForm(emptyForm);
+    }
   };
+
+  const inputClass =
+    "w-full h-11 px-4 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#000EEF]/25 focus:border-[#000EEF] transition";
 
   return (
     <div className="min-h-screen bg-white text-gray-900">
@@ -156,6 +201,13 @@ export default function ContactPage() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
+                  {error && (
+                    <div className="flex items-start gap-3 bg-red-50 border border-red-200 text-red-700 text-sm rounded-lg px-4 py-3">
+                      <AlertCircle className="w-4 h-4 mt-0.5 shrink-0" />
+                      {error}
+                    </div>
+                  )}
+
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1.5">
@@ -165,9 +217,11 @@ export default function ContactPage() {
                       <input
                         type="text"
                         required
+                        value={form.full_name}
+                        onChange={set("full_name")}
                         placeholder="Your full name"
                         autoComplete="name"
-                        className="w-full h-11 px-4 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#000EEF]/25 focus:border-[#000EEF] transition"
+                        className={inputClass}
                       />
                     </div>
                     <div>
@@ -178,9 +232,11 @@ export default function ContactPage() {
                       <input
                         type="email"
                         required
+                        value={form.email}
+                        onChange={set("email")}
                         placeholder="you@company.com"
                         autoComplete="email"
-                        className="w-full h-11 px-4 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#000EEF]/25 focus:border-[#000EEF] transition"
+                        className={inputClass}
                       />
                     </div>
                   </div>
@@ -193,9 +249,11 @@ export default function ContactPage() {
                       </label>
                       <input
                         type="text"
+                        value={form.company}
+                        onChange={set("company")}
                         placeholder="Your company name"
                         autoComplete="organization"
-                        className="w-full h-11 px-4 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#000EEF]/25 focus:border-[#000EEF] transition"
+                        className={inputClass}
                       />
                     </div>
                     <div>
@@ -205,9 +263,11 @@ export default function ContactPage() {
                       </label>
                       <input
                         type="tel"
+                        value={form.phone}
+                        onChange={set("phone")}
                         placeholder="+1 234 567 8900"
                         autoComplete="tel"
-                        className="w-full h-11 px-4 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#000EEF]/25 focus:border-[#000EEF] transition"
+                        className={inputClass}
                       />
                     </div>
                   </div>
@@ -220,8 +280,8 @@ export default function ContactPage() {
                     <div className="relative">
                       <select
                         required
-                        value={inquiry}
-                        onChange={(e) => setInquiry(e.target.value)}
+                        value={form.inquiry_type}
+                        onChange={set("inquiry_type")}
                         className="w-full h-11 px-4 pr-10 rounded-lg border border-gray-200 text-sm text-gray-900 bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-[#000EEF]/25 focus:border-[#000EEF] transition"
                       >
                         <option value="" disabled>Select an inquiry type…</option>
@@ -239,9 +299,11 @@ export default function ContactPage() {
                     </label>
                     <input
                       type="text"
+                      value={form.country}
+                      onChange={set("country")}
                       placeholder="e.g. United States, Germany, UAE…"
                       autoComplete="country-name"
-                      className="w-full h-11 px-4 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#000EEF]/25 focus:border-[#000EEF] transition"
+                      className={inputClass}
                     />
                   </div>
 
@@ -252,6 +314,8 @@ export default function ContactPage() {
                     <textarea
                       required
                       rows={5}
+                      value={form.message}
+                      onChange={set("message")}
                       placeholder="Tell us what you're looking for, what you manufacture, or any questions you have…"
                       className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder-gray-400 resize-none focus:outline-none focus:ring-2 focus:ring-[#000EEF]/25 focus:border-[#000EEF] transition"
                     />
@@ -263,6 +327,8 @@ export default function ContactPage() {
                     </label>
                     <div className="relative">
                       <select
+                        value={form.referral}
+                        onChange={set("referral")}
                         className="w-full h-11 px-4 pr-10 rounded-lg border border-gray-200 text-sm text-gray-900 bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-[#000EEF]/25 focus:border-[#000EEF] transition"
                       >
                         <option value="">Select an option…</option>
@@ -282,10 +348,14 @@ export default function ContactPage() {
                   <Button
                     type="submit"
                     size="lg"
-                    className="w-full h-12 bg-[#000EEF] hover:bg-[#000EEF]/90 text-white font-semibold rounded-lg text-sm shadow-lg shadow-[#000EEF]/20"
+                    disabled={loading}
+                    className="w-full h-12 bg-[#000EEF] hover:bg-[#000EEF]/90 text-white font-semibold rounded-lg text-sm shadow-lg shadow-[#000EEF]/20 disabled:opacity-70"
                   >
-                    <Send className="w-4 h-4 mr-2" />
-                    Send Message
+                    {loading ? (
+                      <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Sending…</>
+                    ) : (
+                      <><Send className="w-4 h-4 mr-2" /> Send Message</>
+                    )}
                   </Button>
 
                   <p className="text-xs text-gray-400 text-center">
@@ -371,7 +441,7 @@ export default function ContactPage() {
           <div className="flex gap-6 text-sm font-medium text-gray-500">
             <Link href="/" className="hover:text-[#000EEF] transition-colors">Home</Link>
             <Link href="/suppliers" className="hover:text-[#000EEF] transition-colors">For Suppliers</Link>
-            <Link href="/signin" className="hover:text-[#000EEF] transition-colors">Sign in</Link>
+            <button onClick={() => window.open('https://buyer.proquoment.in', '_blank')} className="hover:text-[#000EEF] transition-colors">Sign in</button>
           </div>
           <div className="text-sm text-gray-400">© 2025 Proquoment. All rights reserved.</div>
         </div>

@@ -9,6 +9,7 @@ import {
   Linkedin,
   Twitter,
   Instagram,
+  Youtube,
   Globe,
   Send,
   CheckCircle2,
@@ -42,20 +43,26 @@ const contactDetails = [
   {
     icon: Mail,
     label: "Email us",
-    value: "hello@proquoment.in",
-    href: "mailto:hello@proquoment.in",
+    value: "Proquoment@gmail.com",
+    href: "mailto:Proquoment@gmail.com",
   },
   {
     icon: Phone,
     label: "Call us",
-    value: "+91 98765 43210",
-    href: "tel:+919876543210",
+    value: "+91 79820 65422",
+    href: "tel:+917982065422",
+  },
+  {
+    icon: Phone,
+    label: "Call us (alternate)",
+    value: "+91 70119 77280",
+    href: "tel:+917011977280",
   },
   {
     icon: MapPin,
     label: "Headquarters",
-    value: "Mumbai, Maharashtra, India",
-    href: "https://maps.google.com/?q=Mumbai,Maharashtra,India",
+    value: "Gurgaon, Haryana, India",
+    href: "https://maps.google.com/?q=Gurgaon,Haryana,India",
   },
   {
     icon: Globe,
@@ -83,6 +90,12 @@ const socials = [
     label: "Instagram",
     href: "https://www.instagram.com/proquoment",
     color: "hover:bg-pink-500/10 hover:text-pink-600 hover:border-pink-200",
+  },
+  {
+    icon: Youtube,
+    label: "YouTube",
+    href: "https://www.youtube.com/@Proquoment",
+    color: "hover:bg-red-500/10 hover:text-red-600 hover:border-red-200",
   },
 ];
 

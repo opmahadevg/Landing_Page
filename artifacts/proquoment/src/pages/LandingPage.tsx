@@ -43,7 +43,6 @@ export default function LandingPage() {
           </div>
         </div>
       </nav>
-
       {/* Hero Section */}
       <section className="relative pt-24 pb-32 overflow-hidden">
         <div className="container mx-auto px-6 relative z-10">
@@ -129,7 +128,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
       {/* Trust Strip */}
       <section className="py-10 border-y border-gray-100 bg-gray-50/50">
         <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-8 text-gray-400">
@@ -143,7 +141,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
       {/* How it works */}
       <section id="how-it-works" className="py-32">
         <div className="container mx-auto px-6">
@@ -219,7 +216,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
       {/* Supplier Quotes UI Section */}
       <section className="py-24 bg-gray-50 border-y border-gray-100">
         <div className="container mx-auto px-6">
@@ -262,7 +258,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
       {/* Production Timeline */}
       <section className="py-32">
         <div className="container mx-auto px-6">
@@ -290,7 +285,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
       {/* Scrolling Ticker */}
       <section className="py-16 bg-gray-900 overflow-hidden text-white">
         <div className="flex whitespace-nowrap">
@@ -319,7 +313,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
       {/* Buyer Testimonials */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-6 max-w-6xl">
@@ -502,7 +495,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
       {/* Footer */}
       <footer className="py-12 border-t border-gray-100 bg-white">
         <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
@@ -512,9 +504,7 @@ export default function LandingPage() {
             <Link href="/suppliers" className="hover:text-primary transition-colors">For Suppliers</Link>
             <a href="https://www.proquoment.in/contact" target="_blank" rel="noreferrer" className="hover:text-primary transition-colors">Contact</a>
           </div>
-          <div className="text-sm text-gray-400">
-            © 2025 Proquoment. All rights reserved.
-          </div>
+          <div className="text-sm text-gray-400">© 2026 Proquoment. All rights reserved.</div>
         </div>
       </footer>
     </div>

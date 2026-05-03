@@ -7,18 +7,22 @@ import SuppliersPage from "@/pages/SuppliersPage";
 import SignInPage from "@/pages/SignInPage";
 import ContactPage from "@/pages/ContactPage";
 import NotFound from "@/pages/not-found";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
 function Router() {
   return (
-    <Switch>
-      <Route path="/" component={LandingPage} />
-      <Route path="/suppliers" component={SuppliersPage} />
-      <Route path="/signin" component={SignInPage} />
-      <Route path="/contact" component={ContactPage} />
-      <Route component={NotFound} />
-    </Switch>
+    <>
+      <ScrollToTop />
+      <Switch>
+        <Route path="/" component={LandingPage} />
+        <Route path="/suppliers" component={SuppliersPage} />
+        <Route path="/signin" component={SignInPage} />
+        <Route path="/contact" component={ContactPage} />
+        <Route component={NotFound} />
+      </Switch>
+    </>
   );
 }
 

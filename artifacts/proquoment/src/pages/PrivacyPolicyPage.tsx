@@ -33,7 +33,6 @@ export default function PrivacyPolicyPage() {
           </Link>
         </div>
       </nav>
-
       {/* Hero */}
       <section className="pt-20 pb-12 bg-gradient-to-b from-gray-50/80 to-white border-b border-gray-100">
         <div className="container mx-auto px-6 text-center max-w-2xl">
@@ -46,7 +45,6 @@ export default function PrivacyPolicyPage() {
           </motion.div>
         </div>
       </section>
-
       {/* Content */}
       <section className="py-16">
         <motion.div
@@ -192,7 +190,6 @@ export default function PrivacyPolicyPage() {
           </Section>
         </motion.div>
       </section>
-
       {/* Footer */}
       <footer className="py-10 border-t border-gray-100 bg-white">
         <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
@@ -204,7 +201,7 @@ export default function PrivacyPolicyPage() {
             <Link href="/privacy-policy" className="text-[#000EEF] font-semibold">Privacy Policy</Link>
             <Link href="/terms-of-service" className="hover:text-[#000EEF] transition-colors">Terms of Service</Link>
           </div>
-          <div className="text-sm text-gray-400">© 2025 Proquoment. All rights reserved.</div>
+          <div className="text-sm text-gray-400">© 2026 Proquoment. All rights reserved.</div>
         </div>
       </footer>
     </div>

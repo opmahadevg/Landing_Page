@@ -1,0 +1,55 @@
+uploads = []
+
+[[generated]]
+id = "aauFDk6O82zQdXCS9g4XX"
+uri = "file://artifacts/proquoment/public/hero-bg.png"
+type = "image"
+title = "Hero background factory floor"
+
+[[generated]]
+id = "pVZYgYrqTUQLv9PrlWYMP"
+uri = "file://artifacts/proquoment/public/step1.png"
+type = "image"
+title = "product spec upload UI"
+
+[[generated]]
+id = "gWb3eAUOcbaGc-TaJxuaQ"
+uri = "file://artifacts/proquoment/public/step2.png"
+type = "image"
+title = "supplier quotes comparison UI"
+
+[[generated]]
+id = "SqYKf7fm_6qZxzUV7ZjXQ"
+uri = "file://artifacts/proquoment/public/step3.png"
+type = "image"
+title = "sample order and supplier selection"
+
+[[generated]]
+id = "el9iHHgMTFk2Bmw0UKXR4"
+uri = "file://artifacts/proquoment/public/step4.png"
+type = "image"
+title = "QA and delivery tracking UI"
+
+[[outputs]]
+id = "ocx472L7f59D7UNVVehci"
+uri = "file://artifacts/proquoment/public/step1.png"
+type = "image"
+title = "Step 1 — Add your product details"
+
+[[outputs]]
+id = "b_xg3yh1K8wv_0w2InLtZ"
+uri = "file://artifacts/proquoment/public/step2.png"
+type = "image"
+title = "Step 2 — Get multiple quotes"
+
+[[outputs]]
+id = "AjYx9qWctYXIb2IngJW-r"
+uri = "file://artifacts/proquoment/public/step3.png"
+type = "image"
+title = "Step 3 — Order samples & pick supplier"
+
+[[outputs]]
+id = "AF1xxXLHIHFtBgZlQpBYD"
+uri = "file://artifacts/proquoment/public/step4.png"
+type = "image"
+title = "Step 4 — Onsite QA & delivery"

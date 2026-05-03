@@ -8,6 +8,7 @@ import SignInPage from "@/pages/SignInPage";
 import ContactPage from "@/pages/ContactPage";
 import PrivacyPolicyPage from "@/pages/PrivacyPolicyPage";
 import TermsOfServicePage from "@/pages/TermsOfServicePage";
+import ChooseReferencesPage from "@/pages/ChooseReferencesPage";
 import NotFound from "@/pages/not-found";
 import ScrollToTop from "@/components/ScrollToTop";
 
@@ -24,6 +25,7 @@ function Router() {
         <Route path="/contact" component={ContactPage} />
         <Route path="/privacy-policy" component={PrivacyPolicyPage} />
         <Route path="/terms-of-service" component={TermsOfServicePage} />
+        <Route path="/choose-references" component={ChooseReferencesPage} />
         <Route component={NotFound} />
       </Switch>
     </>

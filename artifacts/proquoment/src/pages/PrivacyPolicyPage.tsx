@@ -41,7 +41,7 @@ export default function PrivacyPolicyPage() {
               <Shield className="w-3.5 h-3.5" /> Legal
             </Badge>
             <h1 className="text-5xl font-bold tracking-tight text-gray-900 mb-4">Privacy Policy</h1>
-            <p className="text-sm text-gray-400">Last updated: May 2025</p>
+            <p className="text-sm text-gray-400">Last updated: March 2026</p>
           </motion.div>
         </div>
       </section>

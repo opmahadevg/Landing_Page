@@ -83,7 +83,7 @@ export default function LandingPage() {
               </motion.div>
               <motion.h1 variants={fadeIn} className="text-4xl sm:text-5xl lg:text-[58px] leading-[1.08] font-bold tracking-tight text-gray-900 mb-5 sm:mb-6">
                 Global Product Sourcing.<br />
-                <span className="text-primary">Automated.</span>
+                <span className="text-primary">Now Automated.</span>
               </motion.h1>
               <motion.p variants={fadeIn} className="text-base sm:text-xl text-gray-600 mb-8 sm:mb-10 leading-relaxed max-w-lg font-medium mx-auto lg:mx-0">
                 Lower unit costs. Fewer tariffs. Premium factories. None of the work.

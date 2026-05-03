@@ -208,7 +208,7 @@ export default function SuppliersPage() {
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#000EEF]/5 rounded-full blur-3xl transform translate-x-1/3 -translate-y-1/3" />
         </div>
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
-          <motion.div {...fadeUp} className="max-w-3xl">
+          <motion.div {...fadeUp} className="max-w-3xl text-center lg:text-left">
             <Badge className="bg-[#000EEF]/10 text-[#000EEF] border-[#000EEF]/20 mb-5 sm:mb-6 px-4 py-1.5 text-sm font-semibold">
               For Indian Manufacturers &amp; Exporters
             </Badge>
@@ -216,10 +216,10 @@ export default function SuppliersPage() {
               Grow your exports.<br />
               <span className="text-[#000EEF]">Without the complexity.</span>
             </h1>
-            <p className="text-base sm:text-xl text-gray-600 leading-relaxed max-w-2xl mb-8 sm:mb-10 font-medium">
+            <p className="text-base sm:text-xl text-gray-600 leading-relaxed max-w-2xl mb-8 sm:mb-10 font-medium mx-auto lg:mx-0">
               Join Proquoment's verified supplier network and get matched with international buyers looking for exactly what you make — from Surat to Seattle.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
               <Button
                 size="lg"
                 className="bg-[#000EEF] hover:bg-[#000EEF]/90 text-white rounded-xl px-6 sm:px-8 h-12 sm:h-14 text-sm sm:text-base font-semibold shadow-lg shadow-[#000EEF]/20"

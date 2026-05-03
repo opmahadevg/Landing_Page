@@ -76,7 +76,7 @@ export default function LandingPage() {
       <section className="relative pt-16 sm:pt-24 pb-20 sm:pb-32 overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-            <motion.div initial="initial" animate="animate" variants={staggerContainer} className="max-w-2xl">
+            <motion.div initial="initial" animate="animate" variants={staggerContainer} className="max-w-2xl text-center lg:text-left">
               <motion.div variants={fadeIn} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 text-primary text-xs sm:text-sm font-semibold tracking-wide mb-6 sm:mb-8 border border-primary/10">
                 <Globe className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 Industrial Supply Chain Intelligence
@@ -85,10 +85,10 @@ export default function LandingPage() {
                 Global Product Sourcing.<br />
                 <span className="text-primary">Automated.</span>
               </motion.h1>
-              <motion.p variants={fadeIn} className="text-base sm:text-xl text-gray-600 mb-8 sm:mb-10 leading-relaxed max-w-lg font-medium">
+              <motion.p variants={fadeIn} className="text-base sm:text-xl text-gray-600 mb-8 sm:mb-10 leading-relaxed max-w-lg font-medium mx-auto lg:mx-0">
                 Lower unit costs. Fewer tariffs. Premium factories. None of the work.
               </motion.p>
-              <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
                 <Button size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-xl px-6 sm:px-8 h-12 sm:h-14 text-sm sm:text-base font-semibold" onClick={() => window.open('https://buyer.proquoment.in', '_blank')}>
                   Sign up &amp; Start Sourcing
                 </Button>

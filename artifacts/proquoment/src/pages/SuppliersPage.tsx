@@ -22,6 +22,30 @@ import {
 import { AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { CobeGlobe } from "@/components/ui/cobe-globe";
+
+const globeMarkers = [
+  { id: "nyc", location: [40.7128, -74.006] as [number, number], label: "New York" },
+  { id: "london", location: [51.5074, -0.1278] as [number, number], label: "London" },
+  { id: "dubai", location: [25.2048, 55.2708] as [number, number], label: "Dubai" },
+  { id: "singapore", location: [1.3521, 103.8198] as [number, number], label: "Singapore" },
+  { id: "tokyo", location: [35.6762, 139.6503] as [number, number], label: "Tokyo" },
+  { id: "frankfurt", location: [50.1109, 8.6821] as [number, number], label: "Frankfurt" },
+  { id: "sydney", location: [-33.8688, 151.2093] as [number, number], label: "Sydney" },
+  { id: "mumbai", location: [19.076, 72.8777] as [number, number], label: "Mumbai" },
+  { id: "surat", location: [21.1702, 72.8311] as [number, number], label: "Surat" },
+  { id: "delhi", location: [28.6139, 77.209] as [number, number], label: "Delhi" },
+];
+
+const globeArcs = [
+  { id: "surat-nyc", from: [21.1702, 72.8311] as [number, number], to: [40.7128, -74.006] as [number, number] },
+  { id: "mumbai-london", from: [19.076, 72.8777] as [number, number], to: [51.5074, -0.1278] as [number, number] },
+  { id: "delhi-dubai", from: [28.6139, 77.209] as [number, number], to: [25.2048, 55.2708] as [number, number] },
+  { id: "surat-singapore", from: [21.1702, 72.8311] as [number, number], to: [1.3521, 103.8198] as [number, number] },
+  { id: "mumbai-frankfurt", from: [19.076, 72.8777] as [number, number], to: [50.1109, 8.6821] as [number, number] },
+  { id: "delhi-tokyo", from: [28.6139, 77.209] as [number, number], to: [35.6762, 139.6503] as [number, number] },
+  { id: "surat-sydney", from: [21.1702, 72.8311] as [number, number], to: [-33.8688, 151.2093] as [number, number] },
+];
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
@@ -208,30 +232,84 @@ export default function SuppliersPage() {
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#000EEF]/5 rounded-full blur-3xl transform translate-x-1/3 -translate-y-1/3" />
         </div>
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
-          <motion.div {...fadeUp} className="max-w-3xl text-center lg:text-left">
-            <Badge className="bg-[#000EEF]/10 text-[#000EEF] border-[#000EEF]/20 mb-5 sm:mb-6 px-4 py-1.5 text-sm font-semibold">
-              For Indian Manufacturers &amp; Exporters
-            </Badge>
-            <h1 className="text-4xl sm:text-5xl lg:text-[56px] leading-[1.08] font-bold tracking-tight text-gray-900 mb-5 sm:mb-6">
-              Grow your exports.<br />
-              <span className="text-[#000EEF]">Without the complexity.</span>
-            </h1>
-            <p className="text-base sm:text-xl text-gray-600 leading-relaxed max-w-2xl mb-8 sm:mb-10 font-medium mx-auto lg:mx-0">
-              Join Proquoment's verified supplier network and get matched with international buyers looking for exactly what you make — from Surat to Seattle.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
-              <Button
-                size="lg"
-                className="bg-[#000EEF] hover:bg-[#000EEF]/90 text-white rounded-xl px-6 sm:px-8 h-12 sm:h-14 text-sm sm:text-base font-semibold shadow-lg shadow-[#000EEF]/20"
-                onClick={openSupplierPortal}
-              >
-                Apply as a Supplier <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
-              </Button>
-              <Button size="lg" variant="outline" className="rounded-xl px-6 sm:px-8 h-12 sm:h-14 text-sm sm:text-base font-semibold border-gray-200" onClick={openSupplierSignIn}>
-                Already a supplier? Sign in
-              </Button>
-            </div>
-          </motion.div>
+
+          {/* Two-column: text left, globe right */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            {/* Left: text */}
+            <motion.div {...fadeUp} className="text-center lg:text-left">
+              <Badge className="bg-[#000EEF]/10 text-[#000EEF] border-[#000EEF]/20 mb-5 sm:mb-6 px-4 py-1.5 text-sm font-semibold">
+                For Indian Manufacturers &amp; Exporters
+              </Badge>
+              <h1 className="text-4xl sm:text-5xl lg:text-[52px] leading-[1.08] font-bold tracking-tight text-gray-900 mb-5 sm:mb-6">
+                Grow your exports.<br />
+                <span className="text-[#000EEF]">Without the complexity.</span>
+              </h1>
+              <p className="text-base sm:text-xl text-gray-600 leading-relaxed max-w-2xl mb-8 sm:mb-10 font-medium mx-auto lg:mx-0">
+                Join Proquoment's verified supplier network and get matched with international buyers looking for exactly what you make — from Surat to Seattle.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
+                <Button
+                  size="lg"
+                  className="bg-[#000EEF] hover:bg-[#000EEF]/90 text-white rounded-xl px-6 sm:px-8 h-12 sm:h-14 text-sm sm:text-base font-semibold shadow-lg shadow-[#000EEF]/20"
+                  onClick={openSupplierPortal}
+                >
+                  Apply as a Supplier <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
+                </Button>
+                <Button size="lg" variant="outline" className="rounded-xl px-6 sm:px-8 h-12 sm:h-14 text-sm sm:text-base font-semibold border-gray-200" onClick={openSupplierSignIn}>
+                  Already a supplier? Sign in
+                </Button>
+              </div>
+            </motion.div>
+
+            {/* Right: Globe — hidden on mobile */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.92 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+              className="hidden lg:flex items-center justify-center relative"
+            >
+              {/* Subtle glow behind globe */}
+              <div className="absolute inset-0 bg-[#000EEF]/6 rounded-full blur-3xl scale-75 pointer-events-none" />
+
+              <CobeGlobe
+                className="w-full max-w-[520px]"
+                markers={globeMarkers}
+                arcs={globeArcs}
+                markerColor={[0.0, 0.055, 0.937]}
+                baseColor={[0.97, 0.97, 1.0]}
+                arcColor={[0.0, 0.055, 0.937]}
+                glowColor={[0.8, 0.83, 1.0]}
+                dark={0}
+                mapBrightness={6}
+                markerSize={0.04}
+                markerElevation={0.01}
+                arcWidth={0.8}
+                arcHeight={0.35}
+                speed={0.004}
+                theta={0.15}
+                diffuse={1.2}
+                mapSamples={16000}
+              />
+
+              {/* Floating city labels */}
+              <div className="absolute top-6 left-0 bg-white border border-gray-100 shadow-md rounded-xl px-3 py-2 flex items-center gap-2 pointer-events-none">
+                <div className="w-2 h-2 rounded-full bg-[#000EEF] animate-pulse" />
+                <span className="text-xs font-semibold text-gray-700">New York</span>
+              </div>
+              <div className="absolute top-1/3 right-0 bg-white border border-gray-100 shadow-md rounded-xl px-3 py-2 flex items-center gap-2 pointer-events-none">
+                <div className="w-2 h-2 rounded-full bg-[#000EEF] animate-pulse" />
+                <span className="text-xs font-semibold text-gray-700">London</span>
+              </div>
+              <div className="absolute bottom-1/4 right-4 bg-white border border-gray-100 shadow-md rounded-xl px-3 py-2 flex items-center gap-2 pointer-events-none">
+                <div className="w-2 h-2 rounded-full bg-[#000EEF] animate-pulse" />
+                <span className="text-xs font-semibold text-gray-700">Dubai</span>
+              </div>
+              <div className="absolute bottom-8 left-1/4 bg-white border border-gray-100 shadow-md rounded-xl px-3 py-2 flex items-center gap-2 pointer-events-none">
+                <div className="w-2 h-2 rounded-full bg-[#000EEF] animate-pulse" />
+                <span className="text-xs font-semibold text-gray-700">Singapore</span>
+              </div>
+            </motion.div>
+          </div>
 
           {/* Stats row */}
           <motion.div
@@ -239,7 +317,7 @@ export default function SuppliersPage() {
             initial="initial"
             whileInView="whileInView"
             viewport={{ once: true }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20"
+            className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 lg:mt-20"
           >
             {stats.map((s) => (
               <motion.div key={s.value} variants={fadeUp} className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm">

@@ -341,16 +341,171 @@ export default function LandingPage() {
                   Let AI and sourcing experts find vetted factories for your product. Transparent quotes, reliable suppliers, and significantly lower unit costs compared to open marketplaces.
                 </p>
               </div>
-              <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-[4/3] bg-gray-100">
-                <img src="/step2.png" alt="Get quotes" className="object-cover w-full h-full" />
+
+              {/* Step 2 Mockup — Supplier Quotes */}
+              <div className="relative">
+                <div className="absolute -inset-4 bg-gradient-to-bl from-primary/15 via-primary/5 to-transparent rounded-[2.5rem] blur-3xl pointer-events-none" />
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-primary/10 border border-white/10 flex flex-col" style={{ background: 'linear-gradient(145deg, #0a0f2e 0%, #000EEF 100%)' }}>
+
+                  {/* Header */}
+                  <div className="flex items-center justify-between px-5 py-3.5 border-b border-white/10">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center">
+                        <Globe className="w-3.5 h-3.5 text-white" />
+                      </div>
+                      <div>
+                        <p className="text-white text-xs font-semibold leading-none">Supplier Quotes</p>
+                        <p className="text-white/40 text-[10px] mt-0.5">Men's Black Puffed Jacket · 200 units</p>
+                      </div>
+                    </div>
+                    <div className="bg-green-400/20 border border-green-400/30 rounded-full px-2.5 py-0.5">
+                      <span className="text-green-300 text-[10px] font-semibold">3 quotes received</span>
+                    </div>
+                  </div>
+
+                  {/* Supplier rows */}
+                  <div className="px-5 py-4 flex flex-col gap-3">
+                    {[
+                      { initial: 'A', name: 'Apex Garments', location: 'Surat, Gujarat', rating: '99%', price: '$38.90', badge: 'Best Value', badgeClass: 'bg-green-400/20 text-green-300 border-green-400/30', highlight: true },
+                      { initial: 'M', name: 'Modern Textiles', location: 'Jaipur, Rajasthan', rating: '97%', price: '$41.50', badge: 'Top Pick', badgeClass: 'bg-white/15 text-white/80 border-white/20', highlight: false },
+                      { initial: 'G', name: 'Global Knits', location: 'Tirupur, Tamil Nadu', rating: '95%', price: '$44.00', badge: null, badgeClass: '', highlight: false },
+                    ].map((s) => (
+                      <div key={s.name} className={`rounded-xl px-4 py-3 flex items-center justify-between border ${s.highlight ? 'bg-white/12 border-white/20' : 'bg-white/5 border-white/8'}`}>
+                        <div className="flex items-center gap-3 min-w-0">
+                          <div className="w-8 h-8 rounded-lg bg-white/15 border border-white/15 flex items-center justify-center shrink-0">
+                            <span className="text-white text-xs font-bold">{s.initial}</span>
+                          </div>
+                          <div className="min-w-0">
+                            <div className="flex items-center gap-1.5 flex-wrap">
+                              <span className="text-white/90 text-xs font-semibold">{s.name}</span>
+                              {s.badge && (
+                                <span className={`text-[9px] font-semibold px-1.5 py-0.5 rounded-full border ${s.badgeClass}`}>{s.badge}</span>
+                              )}
+                            </div>
+                            <p className="text-white/40 text-[10px] mt-0.5">{s.location} · <span className="text-green-400">{s.rating} rated</span></p>
+                          </div>
+                        </div>
+                        <div className="text-right shrink-0 ml-3">
+                          <p className="text-white font-bold text-sm">{s.price}</p>
+                          <p className="text-white/35 text-[10px]">per unit</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Footer */}
+                  <div className="mx-5 mb-5 bg-primary/50 border border-white/10 rounded-xl px-4 py-2.5 flex items-center justify-between">
+                    <span className="text-white/55 text-[10px]">Avg. response time: 6 hours</span>
+                    <div className="flex items-center gap-1 text-white text-[10px] font-semibold">
+                      Compare quotes <ArrowRight className="w-3 h-3" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Floating badge */}
+                <div className="absolute -bottom-4 -left-4 bg-white rounded-xl shadow-lg shadow-gray-200/60 border border-gray-100 px-3.5 py-2.5 flex items-center gap-2.5">
+                  <div className="w-8 h-8 bg-green-50 rounded-lg flex items-center justify-center">
+                    <CheckCircle2 className="w-4 h-4 text-green-500" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-gray-900 leading-none">$9.10 saved/unit</p>
+                    <p className="text-[10px] text-gray-400 mt-0.5">vs. open marketplace</p>
+                  </div>
+                </div>
               </div>
             </div>
 
             {/* Step 3 */}
             <div className="grid md:grid-cols-2 gap-16 items-center">
-              <div className="order-2 md:order-1 relative rounded-2xl overflow-hidden shadow-xl aspect-[4/3] bg-gray-100">
-                <img src="/step3.png" alt="Order samples" className="object-cover w-full h-full" />
+              {/* Step 3 Mockup — Sample & Negotiation */}
+              <div className="order-2 md:order-1 relative">
+                <div className="absolute -inset-4 bg-gradient-to-br from-primary/15 via-primary/5 to-transparent rounded-[2.5rem] blur-3xl pointer-events-none" />
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-primary/10 border border-white/10 flex flex-col" style={{ background: 'linear-gradient(145deg, #0a0f2e 0%, #000EEF 100%)' }}>
+
+                  {/* Header */}
+                  <div className="flex items-center justify-between px-5 py-3.5 border-b border-white/10">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center">
+                        <Truck className="w-3.5 h-3.5 text-white" />
+                      </div>
+                      <div>
+                        <p className="text-white text-xs font-semibold leading-none">Sample Order #PQ-2841</p>
+                        <p className="text-white/40 text-[10px] mt-0.5">Apex Garments · Surat</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-1.5 bg-primary/40 border border-white/15 rounded-full px-2.5 py-0.5">
+                      <div className="w-1.5 h-1.5 rounded-full bg-blue-300 animate-pulse" />
+                      <span className="text-white/70 text-[10px] font-medium">In transit</span>
+                    </div>
+                  </div>
+
+                  {/* Sample tracking */}
+                  <div className="px-5 pt-4 pb-3">
+                    <p className="text-white/35 text-[10px] font-semibold uppercase tracking-widest mb-3">Sample Progress</p>
+                    <div className="flex items-center gap-0 mb-4">
+                      {[
+                        { label: 'Ordered', done: true },
+                        { label: 'Produced', done: true },
+                        { label: 'Shipped', done: true },
+                        { label: 'Delivered', done: false },
+                      ].map((step, i, arr) => (
+                        <div key={step.label} className="flex items-center flex-1">
+                          <div className="flex flex-col items-center gap-1 flex-1">
+                            <div className={`w-5 h-5 rounded-full flex items-center justify-center border ${step.done ? 'bg-green-400/20 border-green-400/40' : 'bg-white/5 border-white/15'}`}>
+                              {step.done
+                                ? <CheckCircle2 className="w-3 h-3 text-green-400" />
+                                : <div className="w-1.5 h-1.5 rounded-full bg-white/20" />
+                              }
+                            </div>
+                            <span className={`text-[9px] font-medium ${step.done ? 'text-white/60' : 'text-white/25'}`}>{step.label}</span>
+                          </div>
+                          {i < arr.length - 1 && (
+                            <div className={`h-px flex-1 -mt-3.5 ${step.done ? 'bg-green-400/30' : 'bg-white/10'}`} />
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Negotiation card */}
+                  <div className="mx-5 mb-5 rounded-xl overflow-hidden border border-white/10">
+                    <div className="bg-white/10 px-4 py-2.5 flex items-center gap-2 border-b border-white/10">
+                      <MessageSquare className="w-3.5 h-3.5 text-white/60" />
+                      <span className="text-white text-xs font-semibold">Price Negotiation</span>
+                    </div>
+                    <div className="bg-white/5 px-4 py-3 space-y-2.5">
+                      <div className="flex items-center justify-between">
+                        <span className="text-white/40 text-xs">Supplier quoted</span>
+                        <span className="text-white/50 text-xs font-medium line-through">$48.00 / unit</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-white/40 text-xs">Proquoment negotiated</span>
+                        <span className="text-green-300 text-xs font-bold">$38.90 / unit</span>
+                      </div>
+                      <div className="flex items-center justify-between pt-1 border-t border-white/8">
+                        <span className="text-white/35 text-[10px]">Total savings on 200 units</span>
+                        <span className="text-green-300 text-[10px] font-semibold">$1,820 saved</span>
+                      </div>
+                    </div>
+                    <div className="bg-green-500/20 border-t border-green-400/20 px-4 py-2.5 flex items-center gap-2">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-green-400" />
+                      <span className="text-green-300 text-[10px] font-semibold">Sample approved · Final order confirmed</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Floating badge */}
+                <div className="absolute -bottom-4 -right-4 bg-white rounded-xl shadow-lg shadow-gray-200/60 border border-gray-100 px-3.5 py-2.5 flex items-center gap-2.5">
+                  <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <Star className="w-4 h-4 text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-gray-900 leading-none">Sample approved</p>
+                    <p className="text-[10px] text-gray-400 mt-0.5">Order confirmed</p>
+                  </div>
+                </div>
               </div>
+
               <div className="order-1 md:order-2">
                 <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
                   <span className="text-primary font-bold text-xl">3</span>
@@ -373,8 +528,92 @@ export default function LandingPage() {
                   We manage production end-to-end with onsite quality checks, logistics oversight, and freight forwarding directly to your warehouse.
                 </p>
               </div>
-              <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-[4/3] bg-gray-100">
-                <img src="/step4.png" alt="QA and delivery" className="object-cover w-full h-full" />
+
+              {/* Step 4 Mockup — QA & Delivery */}
+              <div className="relative">
+                <div className="absolute -inset-4 bg-gradient-to-bl from-primary/15 via-primary/5 to-transparent rounded-[2.5rem] blur-3xl pointer-events-none" />
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-primary/10 border border-white/10 flex flex-col" style={{ background: 'linear-gradient(145deg, #0a0f2e 0%, #000EEF 100%)' }}>
+
+                  {/* Header */}
+                  <div className="flex items-center justify-between px-5 py-3.5 border-b border-white/10">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center">
+                        <ShieldCheck className="w-3.5 h-3.5 text-white" />
+                      </div>
+                      <div>
+                        <p className="text-white text-xs font-semibold leading-none">Production & QA Monitor</p>
+                        <p className="text-white/40 text-[10px] mt-0.5">Order #PQ-2841 · Apex Garments</p>
+                      </div>
+                    </div>
+                    <div className="bg-green-400/20 border border-green-400/30 rounded-full px-2.5 py-0.5">
+                      <span className="text-green-300 text-[10px] font-semibold">On schedule</span>
+                    </div>
+                  </div>
+
+                  {/* Production stages */}
+                  <div className="px-5 pt-4 pb-2">
+                    <p className="text-white/35 text-[10px] font-semibold uppercase tracking-widest mb-3">Production Stages</p>
+                    <div className="space-y-2.5">
+                      {[
+                        { label: 'Material Procurement', pct: 100, done: true },
+                        { label: 'Cutting & Stitching', pct: 100, done: true },
+                        { label: 'Quality Inspection', pct: 100, done: true },
+                        { label: 'Packing & Dispatch', pct: 72, done: false },
+                      ].map((stage) => (
+                        <div key={stage.label}>
+                          <div className="flex items-center justify-between mb-1">
+                            <span className="text-white/60 text-[10px] font-medium">{stage.label}</span>
+                            <span className={`text-[10px] font-semibold ${stage.done ? 'text-green-400' : 'text-white/50'}`}>{stage.done ? '✓ Done' : `${stage.pct}%`}</span>
+                          </div>
+                          <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
+                            <div
+                              className={`h-full rounded-full ${stage.done ? 'bg-green-400' : 'bg-primary/80'}`}
+                              style={{ width: `${stage.pct}%` }}
+                            />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* QA checks */}
+                  <div className="mx-5 mt-3 mb-5 rounded-xl overflow-hidden border border-white/10">
+                    <div className="bg-white/10 px-4 py-2.5 flex items-center gap-2 border-b border-white/10">
+                      <Factory className="w-3.5 h-3.5 text-white/60" />
+                      <span className="text-white text-xs font-semibold">Onsite QA Checklist</span>
+                    </div>
+                    <div className="bg-white/5 divide-y divide-white/[0.06]">
+                      {[
+                        'Stitching & seam integrity',
+                        'Fill weight & distribution',
+                        'Zipper & closure test',
+                        'Measurements (S–XL) verified',
+                      ].map((check) => (
+                        <div key={check} className="flex items-center gap-3 px-4 py-2.5">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-green-400 shrink-0" />
+                          <span className="text-white/70 text-xs">{check}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="bg-primary/50 border-t border-white/10 px-4 py-2.5 flex items-center justify-between">
+                      <span className="text-white/55 text-[10px]">Shipping to: New York Warehouse</span>
+                      <div className="flex items-center gap-1 text-white text-[10px] font-semibold">
+                        Track shipment <ArrowRight className="w-3 h-3" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Floating badge */}
+                <div className="absolute -bottom-4 -left-4 bg-white rounded-xl shadow-lg shadow-gray-200/60 border border-gray-100 px-3.5 py-2.5 flex items-center gap-2.5">
+                  <div className="w-8 h-8 bg-green-50 rounded-lg flex items-center justify-center">
+                    <Truck className="w-4 h-4 text-green-500" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-gray-900 leading-none">Cleared for dispatch</p>
+                    <p className="text-[10px] text-gray-400 mt-0.5">ETA: 14 days to NYC</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

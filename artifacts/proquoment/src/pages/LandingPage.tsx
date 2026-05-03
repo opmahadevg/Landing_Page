@@ -102,55 +102,99 @@ export default function LandingPage() {
 
             {/* Hero Right: UI Mockup — hidden on mobile */}
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="relative hidden lg:block">
-              <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent rounded-[2rem] transform rotate-3 scale-105 blur-2xl"></div>
-              <div className="relative bg-white border border-gray-100 rounded-2xl shadow-2xl shadow-gray-200/50 overflow-hidden flex flex-col h-[500px]">
-                {/* Mockup Header */}
-                <div className="h-12 border-b border-gray-100 flex items-center px-4 gap-2 bg-gray-50/50">
-                  <div className="flex gap-1.5">
-                    <div className="w-3 h-3 rounded-full bg-red-400"></div>
-                    <div className="w-3 h-3 rounded-full bg-amber-400"></div>
-                    <div className="w-3 h-3 rounded-full bg-green-400"></div>
+              {/* Glow backdrop */}
+              <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 via-primary/5 to-transparent rounded-[2.5rem] blur-3xl"></div>
+
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-primary/10 border border-gray-100/80 flex flex-col" style={{ background: 'linear-gradient(145deg, #0a0f2e 0%, #000EEF 100%)' }}>
+                {/* App Header Bar */}
+                <div className="flex items-center justify-between px-5 py-3.5 border-b border-white/10">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center">
+                      <Zap className="w-3.5 h-3.5 text-white" />
+                    </div>
+                    <div>
+                      <p className="text-white text-xs font-semibold leading-none">Proquoment Copilot</p>
+                      <p className="text-white/40 text-[10px] mt-0.5">Spec Analysis Mode</p>
+                    </div>
                   </div>
-                  <div className="ml-4 text-xs font-medium text-gray-500 flex items-center gap-2">
-                    <ShieldCheck className="w-3.5 h-3.5" /> Spec Analysis · Proquoment Copilot
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></div>
+                    <span className="text-[10px] text-white/50 font-medium">Live</span>
                   </div>
                 </div>
-                
-                {/* Mockup Body */}
-                <div className="flex-1 p-6 flex flex-col gap-6 bg-gray-50/30 overflow-hidden">
-                  {/* AI Chat Bubble */}
-                  <div className="flex items-start gap-4">
-                    <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0 shadow-sm">
-                      <Zap className="w-4 h-4 text-white" />
-                    </div>
-                    <div className="bg-white border border-gray-100 rounded-2xl rounded-tl-none p-4 shadow-sm text-sm text-gray-700 leading-relaxed">
-                      Got it — men's black puffed jackets, 200 pieces. How warm do you want these? I can specify a 700-fill goose down or a synthetic equivalent depending on your target price.
+
+                {/* Chat Area */}
+                <div className="flex flex-col gap-4 px-5 pt-5 pb-3">
+                  {/* User message */}
+                  <div className="flex justify-end">
+                    <div className="bg-white/10 border border-white/10 backdrop-blur-sm rounded-2xl rounded-br-sm px-4 py-2.5 max-w-[80%]">
+                      <p className="text-white/90 text-xs leading-relaxed">Men's black puffed jackets, qty 200, ship to New York by Q3</p>
                     </div>
                   </div>
 
-                  {/* Spec Panel */}
-                  <div className="bg-white border border-gray-100 rounded-xl p-5 shadow-sm mt-auto">
-                    <div className="flex items-center justify-between mb-4">
-                      <h3 className="font-semibold text-gray-900 flex items-center gap-2">
-                        <Settings2 className="w-4 h-4 text-primary" /> Product Specifications
-                      </h3>
-                      <Badge variant="secondary" className="bg-green-50 text-green-700 border-green-200">Verified</Badge>
+                  {/* AI message */}
+                  <div className="flex items-start gap-3">
+                    <div className="w-7 h-7 rounded-xl bg-white/15 border border-white/20 flex items-center justify-center shrink-0">
+                      <Zap className="w-3.5 h-3.5 text-white" />
                     </div>
-                    <div className="space-y-3">
-                      <div className="flex justify-between text-sm py-2 border-b border-gray-50">
-                        <span className="text-gray-500">Primary Material</span>
-                        <span className="font-medium text-gray-900 flex items-center gap-1">Gore-Tex Pro <CheckCircle2 className="w-3.5 h-3.5 text-primary" /></span>
-                      </div>
-                      <div className="flex justify-between text-sm py-2 border-b border-gray-50">
-                        <span className="text-gray-500">Coating</span>
-                        <span className="font-medium text-gray-900">DWR Finish</span>
-                      </div>
-                      <div className="flex justify-between text-sm py-2">
-                        <span className="text-gray-500">Seams</span>
-                        <span className="font-medium text-gray-900">Heat Tape</span>
-                      </div>
+                    <div className="bg-white/10 border border-white/10 rounded-2xl rounded-tl-sm px-4 py-3 max-w-[85%]">
+                      <p className="text-white/85 text-xs leading-relaxed">
+                        Got it — 200 puffed jackets, black. Do you want 700-fill goose down or a synthetic fill? Synthetic saves ~18% per unit with similar warmth for the NYC climate.
+                      </p>
                     </div>
                   </div>
+                </div>
+
+                {/* Spec Card */}
+                <div className="mx-5 mb-5 mt-2 rounded-xl overflow-hidden border border-white/10">
+                  {/* Card Header */}
+                  <div className="bg-white/10 px-4 py-3 flex items-center justify-between border-b border-white/10">
+                    <div className="flex items-center gap-2">
+                      <Settings2 className="w-3.5 h-3.5 text-white/60" />
+                      <span className="text-white text-xs font-semibold">Product Specifications</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 bg-green-400/20 border border-green-400/30 rounded-full px-2.5 py-0.5">
+                      <div className="w-1.5 h-1.5 rounded-full bg-green-400"></div>
+                      <span className="text-green-300 text-[10px] font-semibold">Verified</span>
+                    </div>
+                  </div>
+
+                  {/* Spec Rows */}
+                  <div className="bg-white/5 divide-y divide-white/8">
+                    {[
+                      { label: 'Primary Material', value: 'Gore-Tex Pro', verified: true },
+                      { label: 'Coating', value: 'DWR Finish', verified: false },
+                      { label: 'Seam Type', value: 'Heat Tape', verified: false },
+                      { label: 'Fill Type', value: 'Synthetic 650-fill', verified: false },
+                    ].map((row) => (
+                      <div key={row.label} className="flex items-center justify-between px-4 py-2.5">
+                        <span className="text-white/45 text-xs">{row.label}</span>
+                        <span className="text-white/90 text-xs font-medium flex items-center gap-1.5">
+                          {row.value}
+                          {row.verified && <CheckCircle2 className="w-3 h-3 text-green-400" />}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Action Row */}
+                  <div className="bg-primary/60 border-t border-white/10 px-4 py-2.5 flex items-center justify-between">
+                    <span className="text-white/60 text-[10px]">Ready to match with 12 verified factories</span>
+                    <div className="flex items-center gap-1 text-white text-[10px] font-semibold">
+                      Find Suppliers <ArrowRight className="w-3 h-3" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Floating badge */}
+              <div className="absolute -bottom-4 -right-4 bg-white rounded-xl shadow-lg shadow-gray-200/60 border border-gray-100 px-3.5 py-2.5 flex items-center gap-2.5">
+                <div className="w-8 h-8 bg-green-50 rounded-lg flex items-center justify-center">
+                  <CheckCircle2 className="w-4 h-4 text-green-500" />
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-gray-900 leading-none">12 suppliers matched</p>
+                  <p className="text-[10px] text-gray-400 mt-0.5">Avg. response: 6h</p>
                 </div>
               </div>
             </motion.div>

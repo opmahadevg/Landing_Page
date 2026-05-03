@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'wouter';
-import { motion } from 'framer-motion';
-import { ArrowRight, CheckCircle2, Factory, Globe, MessageSquare, PackageSearch, ShieldCheck, Truck, ArrowUpRight, Zap, Settings2, Star } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight, CheckCircle2, Factory, Globe, MessageSquare, PackageSearch, ShieldCheck, Truck, ArrowUpRight, Zap, Settings2, Star, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -18,58 +18,90 @@ const staggerContainer = {
 };
 
 export default function LandingPage() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-white text-gray-900 font-sans selection:bg-primary selection:text-white">
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white/80 backdrop-blur-md">
-        <div className="container mx-auto px-6 h-20 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2.5">
-            <img src="/logo.png" alt="Proquoment" className="w-9 h-9 rounded-xl object-cover" />
-            <span className="text-2xl font-bold tracking-tight">Proquoment<span className="text-primary">.</span></span>
+      <nav className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white/90 backdrop-blur-md">
+        <div className="container mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-2.5" onClick={() => setMobileOpen(false)}>
+            <img src="/logo.png" alt="Proquoment" className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl object-cover" />
+            <span className="text-xl sm:text-2xl font-bold tracking-tight">Proquoment<span className="text-primary">.</span></span>
           </Link>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
             <a href="#how-it-works" className="hover:text-primary transition-colors">How it works</a>
             <Link href="/suppliers" className="hover:text-primary transition-colors">For Suppliers</Link>
             <Link href="/contact" className="hover:text-primary transition-colors">Contact</Link>
           </div>
-          <div className="flex items-center gap-4">
-            <Button variant="ghost" className="hidden sm:inline-flex font-semibold" onClick={() => window.open('https://buyer.proquoment.in', '_blank')}>Sign in</Button>
-            <Button className="bg-primary hover:bg-primary/90 text-white font-semibold rounded-lg px-6" onClick={() => window.open('https://buyer.proquoment.in', '_blank')}>
+          <div className="hidden md:flex items-center gap-4">
+            <Button variant="ghost" className="font-semibold" onClick={() => window.open('https://buyer.proquoment.in', '_blank')}>Sign in</Button>
+            <Button className="bg-primary hover:bg-primary/90 text-white font-semibold rounded-lg px-5" onClick={() => window.open('https://buyer.proquoment.in', '_blank')}>
               Sign up &amp; Start Sourcing
             </Button>
           </div>
+          <button
+            className="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
         </div>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {mobileOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.2 }}
+              className="md:hidden border-t border-gray-100 bg-white overflow-hidden"
+            >
+              <div className="container mx-auto px-4 py-4 flex flex-col gap-1">
+                <a href="#how-it-works" onClick={() => setMobileOpen(false)} className="px-4 py-3 text-sm font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors">How it works</a>
+                <Link href="/suppliers" onClick={() => setMobileOpen(false)} className="px-4 py-3 text-sm font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors">For Suppliers</Link>
+                <Link href="/contact" onClick={() => setMobileOpen(false)} className="px-4 py-3 text-sm font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors">Contact</Link>
+                <div className="pt-3 mt-2 border-t border-gray-100 flex flex-col gap-2">
+                  <Button variant="outline" className="w-full font-semibold rounded-lg" onClick={() => { setMobileOpen(false); window.open('https://buyer.proquoment.in', '_blank'); }}>Sign in</Button>
+                  <Button className="w-full bg-primary hover:bg-primary/90 text-white font-semibold rounded-lg" onClick={() => { setMobileOpen(false); window.open('https://buyer.proquoment.in', '_blank'); }}>Sign up &amp; Start Sourcing</Button>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
       {/* Hero Section */}
-      <section className="relative pt-24 pb-32 overflow-hidden">
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <section className="relative pt-16 sm:pt-24 pb-20 sm:pb-32 overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <motion.div initial="initial" animate="animate" variants={staggerContainer} className="max-w-2xl">
-              <motion.div variants={fadeIn} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 text-primary text-sm font-semibold tracking-wide mb-8 border border-primary/10">
-                <Globe className="w-4 h-4" />
+              <motion.div variants={fadeIn} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 text-primary text-xs sm:text-sm font-semibold tracking-wide mb-6 sm:mb-8 border border-primary/10">
+                <Globe className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 Industrial Supply Chain Intelligence
               </motion.div>
-              <motion.h1 variants={fadeIn} className="text-[58px] leading-[1.05] font-bold tracking-tight text-gray-900 mb-6">
+              <motion.h1 variants={fadeIn} className="text-4xl sm:text-5xl lg:text-[58px] leading-[1.08] font-bold tracking-tight text-gray-900 mb-5 sm:mb-6">
                 Global Product Sourcing.<br />
                 <span className="text-primary">Automated.</span>
               </motion.h1>
-              <motion.p variants={fadeIn} className="text-xl text-gray-600 mb-10 leading-relaxed max-w-lg font-medium">
+              <motion.p variants={fadeIn} className="text-base sm:text-xl text-gray-600 mb-8 sm:mb-10 leading-relaxed max-w-lg font-medium">
                 Lower unit costs. Fewer tariffs. Premium factories. None of the work.
               </motion.p>
-              <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-xl px-8 h-14 text-base font-semibold" onClick={() => window.open('https://buyer.proquoment.in', '_blank')}>
+              <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <Button size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-xl px-6 sm:px-8 h-12 sm:h-14 text-sm sm:text-base font-semibold" onClick={() => window.open('https://buyer.proquoment.in', '_blank')}>
                   Sign up &amp; Start Sourcing
                 </Button>
                 <Link href="/contact">
-                  <Button size="lg" variant="outline" className="rounded-xl px-8 h-14 text-base font-semibold border-gray-200 hover:bg-gray-50">
+                  <Button size="lg" variant="outline" className="w-full sm:w-auto rounded-xl px-6 sm:px-8 h-12 sm:h-14 text-sm sm:text-base font-semibold border-gray-200 hover:bg-gray-50">
                     Book a call
                   </Button>
                 </Link>
               </motion.div>
             </motion.div>
 
-            {/* Hero Right: UI Mockup */}
-            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="relative">
+            {/* Hero Right: UI Mockup — hidden on mobile */}
+            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="relative hidden lg:block">
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent rounded-[2rem] transform rotate-3 scale-105 blur-2xl"></div>
               <div className="relative bg-white border border-gray-100 rounded-2xl shadow-2xl shadow-gray-200/50 overflow-hidden flex flex-col h-[500px]">
                 {/* Mockup Header */}
@@ -126,10 +158,10 @@ export default function LandingPage() {
         </div>
       </section>
       {/* Trust Strip */}
-      <section className="py-10 border-y border-gray-100 bg-gray-50/50">
-        <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-8 text-gray-400">
-          <span className="text-sm font-semibold tracking-wide uppercase">Work with the suppliers behind</span>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 grayscale opacity-60">
+      <section className="py-8 sm:py-10 border-y border-gray-100 bg-gray-50/50">
+        <div className="container mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-center gap-4 sm:gap-8 text-gray-400">
+          <span className="text-xs sm:text-sm font-semibold tracking-wide uppercase">Work with the suppliers behind</span>
+          <div className="flex flex-wrap justify-center items-center gap-6 md:gap-12 grayscale opacity-60">
             <span className="font-bold text-xl font-serif">UNIQLO</span>
             <span className="font-black text-2xl tracking-tighter">adidas</span>
             <span className="font-bold text-2xl tracking-widest">TATA</span>
@@ -139,14 +171,14 @@ export default function LandingPage() {
         </div>
       </section>
       {/* How it works */}
-      <section id="how-it-works" className="py-32">
-        <div className="container mx-auto px-6">
-          <div className="text-center max-w-3xl mx-auto mb-24">
-            <h2 className="text-4xl font-bold tracking-tight text-gray-900 mb-6">How it works: End-to-end sourcing</h2>
-            <p className="text-xl text-gray-600">Add your product details and let Proquoment handle the complexity.</p>
+      <section id="how-it-works" className="py-16 sm:py-32">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-24">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 mb-4 sm:mb-6">How it works: End-to-end sourcing</h2>
+            <p className="text-base sm:text-xl text-gray-600">Add your product details and let Proquoment handle the complexity.</p>
           </div>
 
-          <div className="space-y-32">
+          <div className="space-y-16 sm:space-y-32">
             {/* Step 1 */}
             <div className="grid md:grid-cols-2 gap-16 items-center">
               <div className="order-2 md:order-1 relative rounded-2xl overflow-hidden shadow-xl aspect-[4/3] bg-gray-100">
@@ -214,11 +246,11 @@ export default function LandingPage() {
         </div>
       </section>
       {/* Supplier Quotes UI Section */}
-      <section className="py-24 bg-gray-50 border-y border-gray-100">
-        <div className="container mx-auto px-6">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 mb-4">Get multiple quotes from the best suppliers</h2>
-            <p className="text-lg text-gray-600">Vetted manufacturers competing for your project.</p>
+      <section className="py-16 sm:py-24 bg-gray-50 border-y border-gray-100">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 mb-3 sm:mb-4">Get multiple quotes from the best suppliers</h2>
+            <p className="text-base sm:text-lg text-gray-600">Vetted manufacturers competing for your project.</p>
           </div>
 
           <div className="max-w-4xl mx-auto grid gap-4">
@@ -228,26 +260,26 @@ export default function LandingPage() {
               { name: 'Jason', company: 'Global Logistics', location: 'Nasik', rating: '95%', price: '$41.00', badge: null }
             ].map((supplier, i) => (
               <Card key={i} className="border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                <CardContent className="p-6 flex items-center justify-between">
-                  <div className="flex items-center gap-6">
-                    <Avatar className="h-14 w-14 border border-gray-100">
+                <CardContent className="p-4 sm:p-6 flex items-center justify-between gap-4">
+                  <div className="flex items-center gap-3 sm:gap-6 min-w-0">
+                    <Avatar className="h-10 w-10 sm:h-14 sm:w-14 border border-gray-100 shrink-0">
                       <AvatarFallback className="bg-gray-100 text-gray-600 font-semibold">{supplier.name[0]}</AvatarFallback>
                     </Avatar>
-                    <div>
-                      <div className="flex items-center gap-3 mb-1">
-                        <h4 className="font-semibold text-gray-900 text-lg">{supplier.name}</h4>
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-2 mb-1 flex-wrap">
+                        <h4 className="font-semibold text-gray-900 text-base sm:text-lg">{supplier.name}</h4>
                         {supplier.badge && (
-                          <Badge variant="outline" className={supplier.badgeColor}>{supplier.badge}</Badge>
+                          <Badge variant="outline" className={`${supplier.badgeColor} text-xs`}>{supplier.badge}</Badge>
                         )}
                       </div>
-                      <p className="text-sm text-gray-500 font-medium">
+                      <p className="text-xs sm:text-sm text-gray-500 font-medium truncate">
                         {supplier.company} · {supplier.location} · <span className="text-green-600">{supplier.rating} Rating</span>
                       </p>
                     </div>
                   </div>
-                  <div className="text-right">
-                    <div className="text-2xl font-bold text-gray-900">{supplier.price}</div>
-                    <div className="text-sm text-gray-500">per unit</div>
+                  <div className="text-right shrink-0">
+                    <div className="text-xl sm:text-2xl font-bold text-gray-900">{supplier.price}</div>
+                    <div className="text-xs sm:text-sm text-gray-500">per unit</div>
                   </div>
                 </CardContent>
               </Card>
@@ -256,14 +288,14 @@ export default function LandingPage() {
         </div>
       </section>
       {/* Production Timeline */}
-      <section className="py-32">
-        <div className="container mx-auto px-6">
-          <div className="max-w-3xl mb-16">
-            <h2 className="text-4xl font-bold tracking-tight text-gray-900 mb-6">Onsite QA and delivery handled for you</h2>
-            <p className="text-xl text-gray-600">We don't just find the supplier. We oversee the entire production cycle.</p>
+      <section className="py-16 sm:py-32">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="max-w-3xl mb-10 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 mb-4 sm:mb-6">Onsite QA and delivery handled for you</h2>
+            <p className="text-base sm:text-xl text-gray-600">We don't just find the supplier. We oversee the entire production cycle.</p>
           </div>
 
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
             {[
               { icon: PackageSearch, title: 'Sample requested', desc: 'Material specs confirmed. Prototype production initiated.' },
               { icon: ShieldCheck, title: 'Payment completed', desc: 'Secure escrow financing finalized. Material procurement has begun.' },
@@ -311,8 +343,8 @@ export default function LandingPage() {
         </div>
       </section>
       {/* Buyer Testimonials */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-6 max-w-6xl">
+      <section className="py-16 sm:py-24 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
           <motion.div {...{ initial: { opacity: 0, y: 24 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true }, transition: { duration: 0.6 } }} className="text-center max-w-2xl mx-auto mb-16">
             <Badge className="bg-primary/10 text-primary border-primary/20 mb-4 px-4 py-1.5 text-sm font-semibold">Buyer Stories</Badge>
             <h2 className="text-4xl font-bold tracking-tight text-gray-900 mb-4">Trusted by buyers around the world</h2>

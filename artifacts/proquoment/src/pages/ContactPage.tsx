@@ -154,27 +154,27 @@ export default function ContactPage() {
     <div className="min-h-screen bg-white text-gray-900">
       {/* Nav */}
       <nav className="w-full border-b border-gray-100 bg-white/90 backdrop-blur-md sticky top-0 z-50">
-        <div className="container mx-auto px-6 h-18 py-4 flex items-center justify-between">
+        <div className="container mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2.5">
-            <img src="/logo.png" alt="Proquoment" className="w-9 h-9 rounded-xl object-cover" />
-            <span className="text-2xl font-bold tracking-tight">
+            <img src="/logo.png" alt="Proquoment" className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl object-cover" />
+            <span className="text-xl sm:text-2xl font-bold tracking-tight">
               Proquoment<span className="text-[#000EEF]">.</span>
             </span>
           </Link>
-          <Link href="/" className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 transition-colors">
-            <ArrowLeft className="w-4 h-4" /> Back to home
+          <Link href="/" className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-900 transition-colors">
+            <ArrowLeft className="w-4 h-4" /> <span className="hidden sm:inline">Back to home</span><span className="sm:hidden">Home</span>
           </Link>
         </div>
       </nav>
 
       {/* Hero */}
-      <section className="pt-20 pb-16 bg-gradient-to-b from-gray-50/80 to-white border-b border-gray-100">
-        <div className="container mx-auto px-6 text-center max-w-2xl">
+      <section className="pt-12 sm:pt-20 pb-10 sm:pb-16 bg-gradient-to-b from-gray-50/80 to-white border-b border-gray-100">
+        <div className="container mx-auto px-4 sm:px-6 text-center max-w-2xl">
           <motion.div {...fadeUp}>
             <Badge className="bg-[#000EEF]/10 text-[#000EEF] border-[#000EEF]/20 mb-5 px-4 py-1.5 text-sm font-semibold">
               Get in touch
             </Badge>
-            <h1 className="text-5xl font-bold tracking-tight text-gray-900 mb-5">
+            <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-gray-900 mb-4 sm:mb-5">
               We'd love to hear from you
             </h1>
             <p className="text-lg text-gray-500 leading-relaxed">
@@ -185,9 +185,9 @@ export default function ContactPage() {
       </section>
 
       {/* Main content */}
-      <section className="py-20">
-        <div className="container mx-auto px-6 max-w-6xl">
-          <div className="grid lg:grid-cols-[1fr_420px] gap-16 items-start">
+      <section className="py-10 sm:py-20">
+        <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
+          <div className="grid lg:grid-cols-[1fr_420px] gap-8 sm:gap-16 items-start">
 
             {/* Left — Contact Form */}
             <motion.div

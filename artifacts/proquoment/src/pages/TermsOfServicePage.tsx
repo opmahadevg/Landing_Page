@@ -21,37 +21,37 @@ export default function TermsOfServicePage() {
     <div className="min-h-screen bg-white text-gray-900">
       {/* Nav */}
       <nav className="w-full border-b border-gray-100 bg-white/90 backdrop-blur-md sticky top-0 z-50">
-        <div className="container mx-auto px-6 h-18 py-4 flex items-center justify-between">
+        <div className="container mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2.5">
-            <img src="/logo.png" alt="Proquoment" className="w-9 h-9 rounded-xl object-cover" />
-            <span className="text-2xl font-bold tracking-tight">
+            <img src="/logo.png" alt="Proquoment" className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl object-cover" />
+            <span className="text-xl sm:text-2xl font-bold tracking-tight">
               Proquoment<span className="text-[#000EEF]">.</span>
             </span>
           </Link>
-          <Link href="/" className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 transition-colors">
-            <ArrowLeft className="w-4 h-4" /> Back to home
+          <Link href="/" className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-900 transition-colors">
+            <ArrowLeft className="w-4 h-4" /> <span className="hidden sm:inline">Back to home</span><span className="sm:hidden">Home</span>
           </Link>
         </div>
       </nav>
       {/* Hero */}
-      <section className="pt-20 pb-12 bg-gradient-to-b from-gray-50/80 to-white border-b border-gray-100">
-        <div className="container mx-auto px-6 text-center max-w-2xl">
+      <section className="pt-12 sm:pt-20 pb-8 sm:pb-12 bg-gradient-to-b from-gray-50/80 to-white border-b border-gray-100">
+        <div className="container mx-auto px-4 sm:px-6 text-center max-w-2xl">
           <motion.div {...fadeUp}>
             <Badge className="bg-[#000EEF]/10 text-[#000EEF] border-[#000EEF]/20 mb-5 px-4 py-1.5 text-sm font-semibold inline-flex items-center gap-2">
               <FileText className="w-3.5 h-3.5" /> Legal
             </Badge>
-            <h1 className="text-5xl font-bold tracking-tight text-gray-900 mb-4">Terms of Service</h1>
+            <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-gray-900 mb-4">Terms of Service</h1>
             <p className="text-sm text-gray-400">Last updated: March 2026</p>
           </motion.div>
         </div>
       </section>
       {/* Content */}
-      <section className="py-16">
+      <section className="py-10 sm:py-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          className="container mx-auto px-6 max-w-3xl"
+          className="container mx-auto px-4 sm:px-6 max-w-3xl"
         >
           <Section title="1. Agreement to Terms">
             <p>

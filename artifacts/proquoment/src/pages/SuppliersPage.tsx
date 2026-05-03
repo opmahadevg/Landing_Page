@@ -16,7 +16,10 @@ import {
   Clock,
   Eye,
   EyeOff,
+  Menu,
+  X,
 } from "lucide-react";
+import { AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -136,6 +139,7 @@ const categories = [
 export default function SuppliersPage() {
   const [authMode, setAuthMode] = useState<"signin" | "signup">("signin");
   const [showPassword, setShowPassword] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const openSupplierPortal = () => {
     window.open("https://form.proquoment.in", "_blank");
@@ -149,54 +153,81 @@ export default function SuppliersPage() {
     <div className="min-h-screen bg-white text-gray-900">
       {/* Nav */}
       <nav className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white/90 backdrop-blur-md">
-        <div className="container mx-auto px-6 h-20 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2.5">
-            <img src="/logo.png" alt="Proquoment" className="w-9 h-9 rounded-xl object-cover" />
-            <span className="text-2xl font-bold tracking-tight">Proquoment<span className="text-[#000EEF]">.</span></span>
+        <div className="container mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-2.5" onClick={() => setMobileOpen(false)}>
+            <img src="/logo.png" alt="Proquoment" className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl object-cover" />
+            <span className="text-xl sm:text-2xl font-bold tracking-tight">Proquoment<span className="text-[#000EEF]">.</span></span>
           </Link>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
             <Link href="/#how-it-works" className="hover:text-[#000EEF] transition-colors">How it works</Link>
             <Link href="/suppliers" className="text-[#000EEF] font-semibold border-b-2 border-[#000EEF] pb-0.5">For Suppliers</Link>
             <Link href="/contact" className="hover:text-[#000EEF] transition-colors">Contact</Link>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-3">
             <Button variant="ghost" className="font-semibold text-sm" onClick={openSupplierSignIn}>Supplier Sign in</Button>
-            <Button
-              className="bg-[#000EEF] hover:bg-[#000EEF]/90 text-white font-semibold rounded-lg px-5 text-sm"
-              onClick={openSupplierPortal}
-            >
+            <Button className="bg-[#000EEF] hover:bg-[#000EEF]/90 text-white font-semibold rounded-lg px-5 text-sm" onClick={openSupplierPortal}>
               Apply as Supplier
             </Button>
           </div>
+          <button
+            className="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
         </div>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {mobileOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.2 }}
+              className="md:hidden border-t border-gray-100 bg-white overflow-hidden"
+            >
+              <div className="container mx-auto px-4 py-4 flex flex-col gap-1">
+                <Link href="/#how-it-works" onClick={() => setMobileOpen(false)} className="px-4 py-3 text-sm font-medium text-gray-700 hover:text-[#000EEF] hover:bg-gray-50 rounded-lg transition-colors">How it works</Link>
+                <Link href="/suppliers" onClick={() => setMobileOpen(false)} className="px-4 py-3 text-sm font-semibold text-[#000EEF] bg-[#000EEF]/5 rounded-lg">For Suppliers</Link>
+                <Link href="/contact" onClick={() => setMobileOpen(false)} className="px-4 py-3 text-sm font-medium text-gray-700 hover:text-[#000EEF] hover:bg-gray-50 rounded-lg transition-colors">Contact</Link>
+                <div className="pt-3 mt-2 border-t border-gray-100 flex flex-col gap-2">
+                  <Button variant="outline" className="w-full font-semibold rounded-lg text-sm" onClick={() => { setMobileOpen(false); openSupplierSignIn(); }}>Supplier Sign in</Button>
+                  <Button className="w-full bg-[#000EEF] hover:bg-[#000EEF]/90 text-white font-semibold rounded-lg text-sm" onClick={() => { setMobileOpen(false); openSupplierPortal(); }}>Apply as Supplier</Button>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
       {/* Hero */}
-      <section className="relative pt-24 pb-28 overflow-hidden bg-gradient-to-b from-gray-50/80 to-white">
+      <section className="relative pt-16 sm:pt-24 pb-20 sm:pb-28 overflow-hidden bg-gradient-to-b from-gray-50/80 to-white">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#000EEF]/5 rounded-full blur-3xl transform translate-x-1/3 -translate-y-1/3" />
         </div>
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <motion.div {...fadeUp} className="max-w-3xl">
-            <Badge className="bg-[#000EEF]/10 text-[#000EEF] border-[#000EEF]/20 mb-6 px-4 py-1.5 text-sm font-semibold">
+            <Badge className="bg-[#000EEF]/10 text-[#000EEF] border-[#000EEF]/20 mb-5 sm:mb-6 px-4 py-1.5 text-sm font-semibold">
               For Indian Manufacturers &amp; Exporters
             </Badge>
-            <h1 className="text-[56px] leading-[1.05] font-bold tracking-tight text-gray-900 mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-[56px] leading-[1.08] font-bold tracking-tight text-gray-900 mb-5 sm:mb-6">
               Grow your exports.<br />
               <span className="text-[#000EEF]">Without the complexity.</span>
             </h1>
-            <p className="text-xl text-gray-600 leading-relaxed max-w-2xl mb-10 font-medium">
+            <p className="text-base sm:text-xl text-gray-600 leading-relaxed max-w-2xl mb-8 sm:mb-10 font-medium">
               Join Proquoment's verified supplier network and get matched with international buyers looking for exactly what you make — from Surat to Seattle.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <Button
                 size="lg"
-                className="bg-[#000EEF] hover:bg-[#000EEF]/90 text-white rounded-xl px-8 h-14 text-base font-semibold shadow-lg shadow-[#000EEF]/20"
+                className="bg-[#000EEF] hover:bg-[#000EEF]/90 text-white rounded-xl px-6 sm:px-8 h-12 sm:h-14 text-sm sm:text-base font-semibold shadow-lg shadow-[#000EEF]/20"
                 onClick={openSupplierPortal}
               >
-                Apply as a Supplier <ArrowRight className="ml-2 w-5 h-5" />
+                Apply as a Supplier <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
               </Button>
-              <Button size="lg" variant="outline" className="rounded-xl px-8 h-14 text-base font-semibold border-gray-200" onClick={openSupplierSignIn}>
+              <Button size="lg" variant="outline" className="rounded-xl px-6 sm:px-8 h-12 sm:h-14 text-sm sm:text-base font-semibold border-gray-200" onClick={openSupplierSignIn}>
                 Already a supplier? Sign in
               </Button>
             </div>

@@ -320,23 +320,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* CTA / Waitlist */}
-      <section className="py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-primary/5"></div>
-        <div className="container mx-auto px-6 relative z-10 text-center">
-          <Badge variant="outline" className="bg-white/80 border-primary/20 text-primary mb-8 px-4 py-1.5 text-sm">
-            Limited Access · Currently accepting applications
-          </Badge>
-          <h2 className="text-5xl font-bold tracking-tight text-gray-900 mb-6">Join the Industrial Waitlist</h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed">
-            We are selectively onboarding partners for the upcoming production cycle. Secure your place in the future of automated sourcing.
-          </p>
-          <Button size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-xl px-10 h-14 text-lg font-semibold shadow-lg shadow-primary/25" onClick={() => window.open('https://www.proquoment.in/waitlist', '_blank')}>
-            Get Priority Access <ArrowRight className="ml-2 w-5 h-5" />
-          </Button>
-        </div>
-      </section>
-
       {/* Footer */}
       <footer className="py-12 border-t border-gray-100 bg-white">
         <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">

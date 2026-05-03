@@ -534,7 +534,7 @@ export default function SuppliersPage() {
             <Link href="/" className="hover:text-[#000EEF] transition-colors">Home</Link>
             <Link href="/suppliers" className="hover:text-[#000EEF] transition-colors">For Suppliers</Link>
             <Link href="/signin" className="hover:text-[#000EEF] transition-colors">Buyer Sign in</Link>
-            <a href="https://www.proquoment.in/contact" target="_blank" rel="noreferrer" className="hover:text-[#000EEF] transition-colors">Contact</a>
+            <Link href="/contact" className="hover:text-[#000EEF] transition-colors">Contact</Link>
           </div>
           <div className="text-sm text-gray-400">© 2025 Proquoment. All rights reserved.</div>
         </div>

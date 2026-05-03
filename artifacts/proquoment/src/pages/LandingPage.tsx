@@ -65,9 +65,11 @@ export default function LandingPage() {
                     Sign up &amp; Start Sourcing
                   </Button>
                 </Link>
-                <Button size="lg" variant="outline" className="rounded-xl px-8 h-14 text-base font-semibold border-gray-200 hover:bg-gray-50" onClick={() => window.open('https://www.proquoment.in/contact', '_blank')}>
-                  Book a call
-                </Button>
+                <Link href="/contact">
+                  <Button size="lg" variant="outline" className="rounded-xl px-8 h-14 text-base font-semibold border-gray-200 hover:bg-gray-50">
+                    Book a call
+                  </Button>
+                </Link>
               </motion.div>
             </motion.div>
 
@@ -502,7 +504,7 @@ export default function LandingPage() {
           <div className="flex gap-6 text-sm font-medium text-gray-500">
             <a href="#how-it-works" className="hover:text-primary transition-colors">How it works</a>
             <Link href="/suppliers" className="hover:text-primary transition-colors">For Suppliers</Link>
-            <a href="https://www.proquoment.in/contact" target="_blank" rel="noreferrer" className="hover:text-primary transition-colors">Contact</a>
+            <Link href="/contact" className="hover:text-primary transition-colors">Contact</Link>
           </div>
           <div className="text-sm text-gray-400">© 2026 Proquoment. All rights reserved.</div>
         </div>

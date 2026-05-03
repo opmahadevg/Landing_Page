@@ -1,16 +1,14 @@
-<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
- "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="32.000000pt" height="32.000000pt" viewBox="0 0 32.000000 32.000000"
- preserveAspectRatio="xMidYMid meet">
-<metadata>
-Created by potrace 1.16, written by Peter Selinger 2001-2019
-</metadata>
-<g transform="translate(0.000000,32.000000) scale(0.100000,-0.100000)"
-fill="#000000" stroke="none">
-<path d="M0 160 l0 -160 160 0 160 0 0 160 0 160 -160 0 -160 0 0 -160z m170
-59 c0 -40 6 -60 30 -93 16 -24 26 -46 23 -50 -8 -8 -118 -8 -126 0 -3 4 7 26
-23 50 24 33 30 53 30 93 0 28 5 51 10 51 6 0 10 -23 10 -51z"/>
-</g>
+<svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="180" y2="180" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1a1a6e"/>
+      <stop offset="100%" stop-color="#000EEF"/>
+    </linearGradient>
+  </defs>
+  <rect width="180" height="180" rx="36" fill="url(#bg)"/>
+  <!-- Jet/rocket silhouette -->
+  <path d="M90 20 L100 100 L115 120 L90 110 L65 120 L80 100 Z" fill="white"/>
+  <path d="M85 100 L75 145 L90 135 L105 145 L95 100 Z" fill="white"/>
+  <path d="M80 108 L65 125 L78 118 Z" fill="white"/>
+  <path d="M100 108 L115 125 L102 118 Z" fill="white"/>
 </svg>

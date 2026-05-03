@@ -86,7 +86,7 @@ export default function LandingPage() {
                 <span className="text-primary">Now Automated.</span>
               </motion.h1>
               <motion.p variants={fadeIn} className="text-base sm:text-xl text-gray-600 mb-8 sm:mb-10 leading-relaxed max-w-lg font-medium mx-auto lg:mx-0">
-                Lower unit costs. Fewer tariffs. Premium factories. None of the work.
+                From Design to Delivery.
               </motion.p>
               <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
                 <Button size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-xl px-6 sm:px-8 h-12 sm:h-14 text-sm sm:text-base font-semibold" onClick={() => window.open('https://buyer.proquoment.in', '_blank')}>

@@ -157,6 +157,7 @@ export default function SuppliersPage() {
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
             <Link href="/#how-it-works" className="hover:text-[#000EEF] transition-colors">How it works</Link>
             <Link href="/suppliers" className="text-[#000EEF] font-semibold border-b-2 border-[#000EEF] pb-0.5">For Suppliers</Link>
+            <Link href="/contact" className="hover:text-[#000EEF] transition-colors">Contact</Link>
           </div>
           <div className="flex items-center gap-4">
             <Button variant="ghost" className="font-semibold text-sm" onClick={openSupplierSignIn}>Supplier Sign in</Button>
@@ -535,10 +536,8 @@ export default function SuppliersPage() {
         <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
           <Link href="/" className="font-bold text-xl tracking-tight">Proquoment.</Link>
           <div className="flex gap-6 text-sm font-medium text-gray-500">
-            <Link href="/" className="hover:text-[#000EEF] transition-colors">Home</Link>
-            <Link href="/suppliers" className="hover:text-[#000EEF] transition-colors">For Suppliers</Link>
-            <button onClick={() => window.open('https://buyer.proquoment.in', '_blank')} className="hover:text-[#000EEF] transition-colors">Buyer Sign in</button>
-            <Link href="/contact" className="hover:text-[#000EEF] transition-colors">Contact</Link>
+            <a href="#" className="hover:text-[#000EEF] transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-[#000EEF] transition-colors">Terms of Service</a>
           </div>
           <div className="text-sm text-gray-400">© 2025 Proquoment. All rights reserved.</div>
         </div>

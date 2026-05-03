@@ -30,6 +30,7 @@ export default function LandingPage() {
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
             <a href="#how-it-works" className="hover:text-primary transition-colors">How it works</a>
             <Link href="/suppliers" className="hover:text-primary transition-colors">For Suppliers</Link>
+            <Link href="/contact" className="hover:text-primary transition-colors">Contact</Link>
           </div>
           <div className="flex items-center gap-4">
             <Button variant="ghost" className="hidden sm:inline-flex font-semibold" onClick={() => window.open('https://buyer.proquoment.in', '_blank')}>Sign in</Button>
@@ -496,9 +497,8 @@ export default function LandingPage() {
         <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="font-bold text-xl tracking-tight">Proquoment.</div>
           <div className="flex gap-6 text-sm font-medium text-gray-500">
-            <a href="#how-it-works" className="hover:text-primary transition-colors">How it works</a>
-            <Link href="/suppliers" className="hover:text-primary transition-colors">For Suppliers</Link>
-            <Link href="/contact" className="hover:text-primary transition-colors">Contact</Link>
+            <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
           </div>
           <div className="text-sm text-gray-400">© 2026 Proquoment. All rights reserved.</div>
         </div>

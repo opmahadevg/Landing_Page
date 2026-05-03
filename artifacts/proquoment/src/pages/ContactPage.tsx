@@ -452,9 +452,8 @@ export default function ContactPage() {
             <span className="font-bold text-xl tracking-tight">Proquoment<span className="text-[#000EEF]">.</span></span>
           </Link>
           <div className="flex gap-6 text-sm font-medium text-gray-500">
-            <Link href="/" className="hover:text-[#000EEF] transition-colors">Home</Link>
-            <Link href="/suppliers" className="hover:text-[#000EEF] transition-colors">For Suppliers</Link>
-            <button onClick={() => window.open('https://buyer.proquoment.in', '_blank')} className="hover:text-[#000EEF] transition-colors">Sign in</button>
+            <a href="#" className="hover:text-[#000EEF] transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-[#000EEF] transition-colors">Terms of Service</a>
           </div>
           <div className="text-sm text-gray-400">© 2025 Proquoment. All rights reserved.</div>
         </div>

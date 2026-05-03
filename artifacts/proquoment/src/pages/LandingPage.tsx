@@ -225,9 +225,100 @@ export default function LandingPage() {
           <div className="space-y-16 sm:space-y-32">
             {/* Step 1 */}
             <div className="grid md:grid-cols-2 gap-16 items-center">
-              <div className="order-2 md:order-1 relative rounded-2xl overflow-hidden shadow-xl aspect-[4/3] bg-gray-100">
-                <img src="/step1.png" alt="Add product details" className="object-cover w-full h-full" />
+              {/* Step 1 UI Mockup */}
+              <div className="order-2 md:order-1 relative">
+                {/* Glow backdrop */}
+                <div className="absolute -inset-4 bg-gradient-to-br from-primary/15 via-primary/5 to-transparent rounded-[2.5rem] blur-3xl pointer-events-none" />
+
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-primary/10 border border-white/10 flex flex-col" style={{ background: 'linear-gradient(145deg, #0a0f2e 0%, #000EEF 100%)' }}>
+
+                  {/* Header bar */}
+                  <div className="flex items-center justify-between px-5 py-3.5 border-b border-white/10">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center">
+                        <PackageSearch className="w-3.5 h-3.5 text-white" />
+                      </div>
+                      <div>
+                        <p className="text-white text-xs font-semibold leading-none">New Sourcing Request</p>
+                        <p className="text-white/40 text-[10px] mt-0.5">AI Spec Builder</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                      <span className="text-[10px] text-white/50 font-medium">AI ready</span>
+                    </div>
+                  </div>
+
+                  {/* Input area */}
+                  <div className="px-5 pt-5 pb-3">
+                    <div className="bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 mb-1">
+                      <p className="text-[10px] text-white/35 font-medium uppercase tracking-widest mb-2">Describe your product</p>
+                      <p className="text-white/85 text-xs leading-relaxed">
+                        Men's black puffed jacket, 200 units, sizes S–XL, synthetic fill, DWR coating. Ship to New York warehouse by Q3.
+                      </p>
+                      <div className="mt-2.5 flex items-center gap-1">
+                        <div className="h-0.5 w-0.5 rounded-full bg-white/50 animate-pulse" />
+                        <div className="h-0.5 w-3 rounded-full bg-white/30" />
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2 mt-3 mb-1">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary/60 animate-pulse" />
+                      <span className="text-white/40 text-[10px] font-medium">AI extracting specifications…</span>
+                    </div>
+                  </div>
+
+                  {/* Spec card */}
+                  <div className="mx-5 mb-5 mt-1 rounded-xl overflow-hidden border border-white/10">
+                    <div className="bg-white/10 px-4 py-2.5 flex items-center justify-between border-b border-white/10">
+                      <div className="flex items-center gap-2">
+                        <Settings2 className="w-3.5 h-3.5 text-white/60" />
+                        <span className="text-white text-xs font-semibold">Generated Spec Sheet</span>
+                      </div>
+                      <div className="flex items-center gap-1.5 bg-green-400/20 border border-green-400/30 rounded-full px-2.5 py-0.5">
+                        <CheckCircle2 className="w-2.5 h-2.5 text-green-400" />
+                        <span className="text-green-300 text-[10px] font-semibold">Auto-filled</span>
+                      </div>
+                    </div>
+
+                    <div className="bg-white/5 divide-y divide-white/[0.06]">
+                      {[
+                        { label: 'Product Type', value: 'Puffed Jacket', done: true },
+                        { label: 'Fill Material', value: 'Synthetic 650-fill', done: true },
+                        { label: 'Outer Shell', value: 'DWR Nylon', done: true },
+                        { label: 'Quantity', value: '200 units (S–XL)', done: true },
+                        { label: 'Delivery Target', value: 'New York · Q3', done: true },
+                      ].map((row) => (
+                        <div key={row.label} className="flex items-center justify-between px-4 py-2.5">
+                          <span className="text-white/40 text-xs">{row.label}</span>
+                          <span className="text-white/90 text-xs font-medium flex items-center gap-1.5">
+                            {row.value}
+                            {row.done && <CheckCircle2 className="w-3 h-3 text-green-400" />}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="bg-primary/50 border-t border-white/10 px-4 py-2.5 flex items-center justify-between">
+                      <span className="text-white/60 text-[10px]">Ready to send to 14 matched factories</span>
+                      <div className="flex items-center gap-1 text-white text-[10px] font-semibold">
+                        Find Suppliers <ArrowRight className="w-3 h-3" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Floating badge */}
+                <div className="absolute -bottom-4 -right-4 bg-white rounded-xl shadow-lg shadow-gray-200/60 border border-gray-100 px-3.5 py-2.5 flex items-center gap-2.5">
+                  <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <Zap className="w-4 h-4 text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-gray-900 leading-none">Spec sheet ready</p>
+                    <p className="text-[10px] text-gray-400 mt-0.5">Generated in 8 seconds</p>
+                  </div>
+                </div>
               </div>
+
               <div className="order-1 md:order-2">
                 <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
                   <span className="text-primary font-bold text-xl">1</span>

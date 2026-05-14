@@ -1,0 +1,14 @@
+# Proquoment
+
+> Proquoment is AI enabled procurement solution for buyers to source from multiple manufacturers and suppliers from the globe. From design to Delivery.
+
+## What We Do
+- Buyers submit RFQs (Request for Quotations) and get matched with Indian suppliers
+- Suppliers list products and bid on buyer requirements
+- AI assists in matching, quoting, and communication
+
+## Key Pages
+- Homepage: https://proquoment.in
+- Buyer Dashboard: https://buyer.proquoment.in
+- Supplier Dashboard: https://supplier.proquoment.in
+- Contact: https://proquoment.in/contact
